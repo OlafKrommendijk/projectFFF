@@ -1,3 +1,7 @@
 <?php
-include_once("header.php"); Hallo ik ben olaf;
+include_once("header.php");
+?>
+
+<?php
+include_once("footer.php");
 ?>
