@@ -11,7 +11,7 @@ session_start();
 <header class="main-header">
     <div class="container">
         <h1 class="mh-logo">
-            <img src="./pictures/logo.jpg" width="65%" alt="Flexbox.ninja">
+            <img src="pictures/logo.jpg" width="65%" alt="Logo van FFF">
         </h1>
         <nav class="main-nav">
             <ul class="main-nav-list">
@@ -26,6 +26,9 @@ session_start();
                 </li>
                 <li>
                     <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="pages/login.php">Inloggen</a>
                 </li>
             </ul>
         </nav>

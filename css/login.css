@@ -1,0 +1,52 @@
+body {
+    width: 100%;
+    margin: 0 auto;
+}
+
+#page-wrapper{
+    background: rgba( 	66, 66, 66, 0.6);
+
+    width: 40%;
+    height: 250px;
+    margin-left: 30%;
+
+    border-radius: 10px;
+    margin-top: 150px;
+
+    display: absolute;
+    text-align: center;
+}
+
+form{
+    width: 70%;
+    margin-top: 2%;
+
+    display: inline-block;
+}
+
+input  {
+    height: 35px;
+    width: 100%;
+    border:none;
+    display:block;
+
+    border-radius: 7px;
+    margin-bottom: 4%;
+    text-align: center;
+    color: black;
+}
+
+input#submit {
+    height:32px;
+    width: 100%;
+    border:none;
+
+    background-color: lightgray;
+    border-radius: 5px;
+    text-align: center;
+}
+
+input#submit:hover {
+    opacity: 0.8;
+    filter: alpha(opacity=8);
+}

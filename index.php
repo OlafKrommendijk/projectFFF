@@ -11,7 +11,7 @@ include_once("header.php");
 
 <div id="page-wrapper">
     <div id="mainPicture-image">
-        <img src="./pictures/mainPicture.jpg" width="40%" alt="Flexbox.ninja">
+        <img src="pictures/mainPicture.jpg" width="40%" alt="Flexbox.ninja">
     </div>
 
     <div id="mainText-container">
