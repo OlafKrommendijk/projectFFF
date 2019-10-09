@@ -11,7 +11,7 @@ session_start();
 <header class="main-header">
     <div class="container">
         <h1 class="mh-logo">
-            <img src="./pictures/logo.jpg" width="170" height="95" alt="Flexbox.ninja">
+            <img src="./pictures/logo.jpg" width="65%" alt="Flexbox.ninja">
         </h1>
         <nav class="main-nav">
             <ul class="main-nav-list">
@@ -19,10 +19,10 @@ session_start();
                     <a href="#">Home</a>
                 </li>
                 <li>
-                    <a href="#">About us</a>
+                    <a href="#">Producten</a>
                 </li>
                 <li>
-                    <a href="#">Our clients</a>
+                    <a href="#">Winkelmand</a>
                 </li>
                 <li>
                     <a href="#">Contact</a>
