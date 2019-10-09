@@ -7,7 +7,7 @@
 
 <footer>
     <div class="footer">
-        <p>&copy; de website van Fred's Feest Fabriek, gemaakt door NewApps</p>
+        <p>&copy; De website van Fred's Feest Fabriek, gemaakt door NewApps</p>
     </div>
 </footer>
 
