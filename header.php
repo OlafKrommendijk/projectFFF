@@ -13,12 +13,12 @@ session_start();
         <nav class="main-nav">
             <ul class="main-nav-list">
                 <li>
-                    <a class="loginButton" href="pages/login.php">Inloggen</a>
+                    <a class="loginButton" href="pageIncludes/loginContent.php">Inloggen</a>
                 </li>
             </ul>
         </nav>
         <h1 class="mh-logo">
-            <img src="pictures/logo.jpg" alt="Logo van FFF">
+            <img src="../pictures/logo.jpg" srcset="pictures/logo.jpg" alt="Logo van FFF" >
         </h1>
 
     </div>

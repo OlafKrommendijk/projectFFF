@@ -4,11 +4,9 @@ body {
 }
 
 .footer {
-    border-color: black;
-    border-style: solid;
-    border-radius: 10px;
+    border: 4px solid black;
 
-    background: #95A5A6;
+    background: #78797a;
 
     position: fixed;
     bottom: 0;

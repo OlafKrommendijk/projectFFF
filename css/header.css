@@ -1,3 +1,7 @@
+body{
+    background-color: #92b7d6;
+}
+
 img {
     max-width: 50%;
     height: auto;
@@ -9,7 +13,7 @@ img {
 }
 
 .loginContainer{
-    max-width: 100%;
+    max-width: 98%;
     margin: 0 auto;
     padding-left: 1%;
     padding-right: 1%;
@@ -27,13 +31,13 @@ img {
     justify-content: flex-end;
     flex-wrap: wrap;
 
-    background-color: #95A5A6;
+    border: 2px solid black;
+    background-color: #78797a;
 }
 
 .main-nav ul {
     margin: 1em 0 .5em;
     text-align: center;
-
 }
 .main-nav li {
     display: inline;
@@ -43,7 +47,7 @@ img {
     padding: 1.0em 1.0em;
 
     border: 1px solid black;
-
+    background-color: #979899;
 }
 
 .loginButton{
