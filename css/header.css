@@ -1,10 +1,22 @@
 img {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
 }
 
-.container {
+.mh-logo{
+    max-width: 10%;
+    width: 10%;
+}
+
+.loginContainer{
     max-width: 100%;
+    margin: 0 auto;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.container {
+    max-width: 99%;
     padding: 2px;
     margin: 0 auto;
 }
@@ -12,7 +24,7 @@ img {
 .main-header .container {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-end;
     flex-wrap: wrap;
 
     background-color: #95A5A6;
@@ -21,11 +33,20 @@ img {
 .main-nav ul {
     margin: 1em 0 .5em;
     text-align: center;
+
 }
 .main-nav li {
     display: inline;
 }
 .main-nav a {
     display: inline-block;
-    padding: .5em .5em;
+    padding: 1.0em 1.0em;
+
+    border: 1px solid black;
+
+}
+
+.loginButton{
+    float: right;
+    border: 1px solid black;
 }

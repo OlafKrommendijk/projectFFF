@@ -8,11 +8,23 @@ session_start();
     <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
+<header class="login-header">
+    <div class="loginContainer">
+        <nav class="main-nav">
+            <ul class="main-nav-list">
+                <li>
+                    <a class="loginButton" href="pages/login.php">Inloggen</a>
+                </li>
+            </ul>
+        </nav>
+        <h1 class="mh-logo">
+            <img src="pictures/logo.jpg" alt="Logo van FFF">
+        </h1>
+
+    </div>
+</header>
 <header class="main-header">
     <div class="container">
-        <h1 class="mh-logo">
-            <img src="pictures/logo.jpg" width="65%" alt="Logo van FFF">
-        </h1>
         <nav class="main-nav">
             <ul class="main-nav-list">
                 <li>
@@ -26,9 +38,6 @@ session_start();
                 </li>
                 <li>
                     <a href="#">Contact</a>
-                </li>
-                <li>
-                    <a href="pages/login.php">Inloggen</a>
                 </li>
             </ul>
         </nav>
