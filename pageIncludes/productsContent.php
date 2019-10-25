@@ -10,7 +10,6 @@
 <div id="page-wrapper">
     <h1> Onze Producten </h1>
     <div class="productGrid">
-        <div class="products">
             <?php
             $query = "SELECT * FROM product";
             $stmt = $db->prepare($query);
@@ -24,8 +23,9 @@
                 $i++;
                 $afbeelding = $product['afbeelding'];
 
-                echo '<div class="productNumber' . $i .'">';
-                echo '<img src="' . $afbeelding .  '" width="10%" alt="Productafbeelding">';
+                echo '<div class="productNumber' . $i .'"><div class="products">';
+
+                echo '<div class="productAfbeelding"><img src="' . $afbeelding .  '" alt="Productafbeelding"></div>';
                 echo '<br>';
                 echo $product['naam'];
                 echo '<br>';
@@ -37,6 +37,7 @@
                 } else{
                     echo 'Koopprijs: €' . $product['prijs']/100;
                 }
+                echo '</div>';
                 echo '</div>';
             }
             ?>

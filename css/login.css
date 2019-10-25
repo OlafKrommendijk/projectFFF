@@ -4,17 +4,15 @@ body {
 }
 
 #page-wrapper{
-    background: rgba( 	66, 66, 66, 0.6);
-
-    width: 40%;
-    height: 250px;
-    margin-left: 30%;
+    width: 30%;
 
     border-radius: 10px;
     margin-top: 150px;
 
-    display: absolute;
     text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 form{
@@ -27,7 +25,6 @@ form{
 input  {
     height: 35px;
     width: 100%;
-    border:none;
     display:block;
 
     border-radius: 7px;
@@ -39,7 +36,6 @@ input  {
 input#submit {
     height:32px;
     width: 100%;
-    border:none;
 
     background-color: lightgray;
     border-radius: 5px;

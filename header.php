@@ -13,7 +13,7 @@ session_start();
         <nav class="main-nav">
             <ul class="main-nav-list">
                 <li>
-                    <a class="loginButton" href="pageIncludes/loginContent.php">Inloggen</a>
+                    <a class="loginButton" href="login.php">Inloggen</a>
                 </li>
             </ul>
         </nav>
