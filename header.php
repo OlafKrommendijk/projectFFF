@@ -18,7 +18,7 @@ session_start();
             </ul>
         </nav>
         <h1 class="mh-logo">
-            <img src="../pictures/logo.jpg" srcset="pictures/logo.jpg" alt="Logo van FFF" >
+            <a href="index.php"><img src="pictures/logo.jpg" alt="Logo van FFF" ></a>
         </h1>
 
     </div>
@@ -28,16 +28,16 @@ session_start();
         <nav class="main-nav">
             <ul class="main-nav-list">
                 <li>
-                    <a href="#">Home</a>
+                    <a href="index.php">Home</a>
                 </li>
                 <li>
-                    <a href="#">Producten</a>
+                    <a href="productenPage.php">Producten</a>
                 </li>
                 <li>
                     <a href="#">Winkelmand</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="contactPage.php">Contact</a>
                 </li>
             </ul>
         </nav>

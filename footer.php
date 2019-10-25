@@ -7,7 +7,7 @@
 
 <footer>
     <div class="footer">
-        <p>&copy; De website van Fred's Feest Fabriek, gemaakt door NewApps</p>
+        <p>&copy; De website van Fred's Feest Fabriek, gemaakt door NewApps. <br>Adres: Parkweg 1A1,  7772 XP Hardenberg</p>
     </div>
 </footer>
 
