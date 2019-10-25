@@ -4,17 +4,20 @@ body {
 }
 
 .footer {
-    border: 4px solid black;
+    border: 2px solid black;
 
     background: #78797a;
 
     position: fixed;
     bottom: 0;
-    width: 98%;
+    width: 100%;
 
-    margin-left: 1%;
 
     text-align: center;
     color: floralwhite;
+}
+
+.footerText{
+    float: right;
 }
 

@@ -8,24 +8,40 @@
 </head>
 <body>
 <div id="page-wrapper">
-    <div id="flexWrap">
-        <h1> Onze Producten </h1>
+    <h1> Onze Producten </h1>
+    <div class="productGrid">
+        <div class="products">
             <?php
             $query = "SELECT * FROM product";
             $stmt = $db->prepare($query);
             $stmt->execute(array());
             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
+            $i = 0;
+
             foreach($products as $product){
-                echo '<div class="product"><div class="product-floatIn">';
-                echo $product['afbeelding'];
+                $i++;
+                $afbeelding = $product['afbeelding'];
+
+                echo '<div class="productNumber' . $i .'">';
+                echo '<img src="' . $afbeelding .  '" width="10%" alt="Productafbeelding">';
+                echo '<br>';
                 echo $product['naam'];
-                echo $product['prijs'];
-                echo $product['prijsDag'];
-                echo $product['prijsWeek'];
-                '</div></div>';
+                echo '<br>';
+
+                if ($product['prijs'] === NULL){
+                    echo 'Prijs per dag: €' . $product['prijsDag']/100;
+                    echo '<br>';
+                    echo 'Prijs per week: €' . $product['prijsWeek']/100;
+                } else{
+                    echo 'Koopprijs: €' . $product['prijs']/100;
+                }
+                echo '</div>';
             }
             ?>
+        </div>
+    </div>
     </div>
 </div>
 </body>
