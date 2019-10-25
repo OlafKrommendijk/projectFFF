@@ -7,24 +7,26 @@
     <link rel="stylesheet" href="./css/products.css">
 </head>
 <body>
-<?php
-$product_array = $db_handle->runQuery("SELECT * FROM fff ORDER BY id ASC");
-if (!empty($product_array)) {
-    foreach($product_array as $key=>$value){
-        ?>
-        <div class="product-item">
-            <form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
-                <div class="product-image"><img src="<?php echo $product_array[$key]["image"]; ?>"></div>
-                <div class="product-tile-footer">
-                    <div class="product-title"><?php echo $product_array[$key]["name"]; ?></div>
-                    <div class="product-price"><?php echo "$".$product_array[$key]["price"]; ?></div>
-                    <div class="cart-action"><input type="text" class="product-quantity" name="quantity" value="1" size="2" /><input type="submit" value="Add to Cart" class="btnAddAction" /></div>
-                </div>
-            </form>
-        </div>
-        <?php
-    }
-}
-?>
+<div id="page-wrapper">
+    <div id="flexWrap">
+        <h1> Onze Producten </h1>
+            <?php
+            $query = "SELECT * FROM product";
+            $stmt = $db->prepare($query);
+            $stmt->execute(array());
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($products as $product){
+                echo '<div class="product"><div class="product-floatIn">';
+                echo $product['afbeelding'];
+                echo $product['naam'];
+                echo $product['prijs'];
+                echo $product['prijsDag'];
+                echo $product['prijsWeek'];
+                '</div></div>';
+            }
+            ?>
+    </div>
+</div>
 </body>
 </html>
