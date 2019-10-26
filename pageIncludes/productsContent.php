@@ -34,9 +34,14 @@
                     echo 'Prijs per dag: €' . $product['prijsDag']/100;
                     echo '<br>';
                     echo 'Prijs per week: €' . $product['prijsWeek']/100;
+                    echo '<br>';
                 } else{
                     echo 'Koopprijs: €' . $product['prijs']/100;
+                    echo '<br><br><br>';
                 }
+
+                echo '<br>';
+                echo '<a href="#" class="myButton">Koop of Huur nu</a>';
                 echo '</div>';
                 echo '</div>';
             }
