@@ -4,17 +4,22 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/medewerkerPagina.css">
 </head>
 <body>
 
 <div id="page-wrapper">
 
+    <div class="buttonBox">
+        <a href="#" class="myButton">Lijsten</a>
+        <a href="#" class="myButton">Bestellingen / retour</a>
+    </div>
 
-    <div id="emailDiscount">
-        <form action=" ">
+
+    <div class="emailDiscount">
+        <form name="geefKorting" method="POST" enctype="multipart/form-data" action=" ">
             Email:<br>
-            <input type="text" name="Email" placeholder="Email">
+            <input required type="email" name="email" placeholder="bij@voorbeeld.com"  />
             <br>
 
 
@@ -55,6 +60,13 @@
 
 <?php
 if (isset($_POST["submit"])) {
+    $email = htmlspecialchars($_POST["email"]);
 
+    try {
+        $sql = "SELECT korting FROM klant WHERE email = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array($email));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>

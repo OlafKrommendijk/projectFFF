@@ -54,5 +54,4 @@ if (isset($_POST["submit"])) {
         echo $e->getMessage();
     }
 }
-echo "<div id='meldingen'>" . $error . "</div>";
 ?>
