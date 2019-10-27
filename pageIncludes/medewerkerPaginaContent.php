@@ -11,8 +11,9 @@
 <div id="page-wrapper">
 
     <div class="buttonBox">
-        <a href="#" class="myButton">Lijsten</a>
-        <a href="#" class="myButton">Bestellingen / retour</a>
+        <a href="./medewerkerPagina.php" class="myButton">Korting</a>
+        <a href="./lijsten.php" class="myButton">Lijsten</a>
+        <a href="./bestellingenRetour.php" class="myButton">Bestellingen / retour</a>
     </div>
 
 
@@ -59,14 +60,14 @@
 </html>
 
 <?php
-if (isset($_POST["submit"])) {
-    $email = htmlspecialchars($_POST["email"]);
-
-    try {
-        $sql = "SELECT korting FROM klant WHERE email = ?";
-        $stmt = $db->prepare($sql);
-        $stmt->execute(array($email));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-}
-?>
+//if (isset($_POST["submit"])) {
+//    $email = htmlspecialchars($_POST["email"]);
+//
+//    try {
+//        $sql = "SELECT korting FROM klant WHERE email = ?";
+//        $stmt = $db->prepare($sql);
+//        $stmt->execute(array($email));
+//        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+//    }
+//}
+//?>
