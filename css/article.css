@@ -1,0 +1,16 @@
+.productAfbeelding{
+    margin-top: 5%;
+    max-width: 40%;
+
+    float:left;
+
+    display: inline-block;
+}
+
+.descBox{
+    display: inline-block;
+    float:right;
+
+    margin-right: 1%;
+    margin-top: 5%;
+}

@@ -1,4 +1,9 @@
 <?php
+$query = "SELECT * FROM product";
+$stmt = $db->prepare($query);
+$stmt->execute(array());
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$i = 0;
 ?>
 
 <!DOCTYPE html>
@@ -10,18 +15,12 @@
 <div id="page-wrapper">
     <h1> Onze Producten </h1>
     <div class="productGrid">
-            <?php
-            $query = "SELECT * FROM product";
-            $stmt = $db->prepare($query);
-            $stmt->execute(array());
-            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-            $i = 0;
-
+<?php
             foreach($products as $product){
                 $i++;
                 $afbeelding = $product['afbeelding'];
+                $productId = $product['productID'];
 
                 echo '<div class="productNumber' . $i .'"><div class="products">';
 
@@ -41,9 +40,10 @@
                 }
 
                 echo '<br>';
-                echo '<a href="#" class="myButton">Koop of Huur nu</a>';
+                echo '<form method="POST" action="./articlePage.php"><input type="hidden" name="productID" value="'.$productId.'" /><input class="button" type="submit" value="Koop of Huur nu" /></form>';
                 echo '</div>';
                 echo '</div>';
+
             }
             ?>
         </div>
