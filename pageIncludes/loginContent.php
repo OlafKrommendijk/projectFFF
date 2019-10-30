@@ -11,22 +11,26 @@
 <div id="page-wrapper">
     <form name="inloggen" method="POST" enctype="multipart/form-data" action=" ">
         <input required type="email" name="email" placeholder="bij@voorbeeld.com"  />
-        <input required type="password" name="password" placeholder="Wachtwoord" />
+        <input required type="password" name="wachtwoord" placeholder="Wachtwoord" />
         <input type="hidden" name="submit" value="true" />
         <input type="submit" id="submit" value=" Inloggen " />
     </form>
 </div>
 </body>
 </html>
+
 <?php
+$password = "Kipsalade11";
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
 //checked over op de submit knop is gedrukt.
 if (isset($_POST["submit"])) {
     $email = htmlspecialchars($_POST["email"]);
-    $password = htmlspecialchars($_POST["password"]);
+    $password = htmlspecialchars($_POST["wachtwoord"]);
 
     //probeert in de database de data te vinden die gelijk is met de email die is ingevuld.
     try {
-        $sql = "SELECT * FROM admin WHERE email = ?";
+        $sql = "SELECT * FROM medewerker WHERE email = ?";
         $stmt = $db->prepare($sql);
         $stmt->execute(array($email));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -37,10 +41,11 @@ if (isset($_POST["submit"])) {
 
             //Als het wachtwoord goed is wordt de session geupdate en wordt hij doorgestuurd naar de lijsten pagina.
             if (password_verify($password, $hash)) {
-                $_SESSION["ID"] = 1;
-                $_SESSION["EMAIL"] = $result["email"];
+                $_SESSION["medewerkerID"] = 1;
+                $_SESSION["email"] = $result["email"];
                 $_SESSION["STATUS"] = 1;
-                header("Location: http://localhost/NoMercy/pages/lijsten.php");
+
+                header("Location: http://localhost/projectFFF/pages/index.php");
                 exit;
 
                 //error message als de inloggegevens verkeerd zijn ingevuld.

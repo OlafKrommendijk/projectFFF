@@ -1,9 +1,15 @@
-#page-wrapper{
+h1{
     text-align: center;
+}
+
+.categorie{
+    margin-bottom: 2%;
+    margin-left: 3%;
 }
 
 .productGrid{
     margin-bottom: 50%;
+    text-align: center;
 }
 
 .productAfbeelding{
@@ -50,5 +56,6 @@
     position:relative;
     top:1px;
 }
+
 
 
