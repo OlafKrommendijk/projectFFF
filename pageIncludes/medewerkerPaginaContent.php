@@ -1,4 +1,5 @@
 <?php
+
 ?>
 
 <!DOCTYPE html>
@@ -60,14 +61,4 @@
 </html>
 
 <?php
-//if (isset($_POST["submit"])) {
-//    $email = htmlspecialchars($_POST["email"]);
-//
-//    try {
-//        $sql = "SELECT korting FROM klant WHERE email = ?";
-//        $stmt = $db->prepare($sql);
-//        $stmt->execute(array($email));
-//        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-//    }
-//}
-//?>
+?>

@@ -11,7 +11,7 @@
 <div id="page-wrapper">
     <form name="inloggen" method="POST" enctype="multipart/form-data" action=" ">
         <input required type="email" name="email" placeholder="bij@voorbeeld.com"  />
-        <input required type="password" name="wachtwoord" placeholder="Wachtwoord" />
+        <input required type="password" name="password" placeholder="Wachtwoord" />
         <input type="hidden" name="submit" value="true" />
         <input type="submit" id="submit" value=" Inloggen " />
     </form>
@@ -20,13 +20,12 @@
 </html>
 
 <?php
-$password = "Kipsalade11";
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+$error = " ";
 
 //checked over op de submit knop is gedrukt.
 if (isset($_POST["submit"])) {
     $email = htmlspecialchars($_POST["email"]);
-    $password = htmlspecialchars($_POST["wachtwoord"]);
+    $password = htmlspecialchars($_POST["password"]);
 
     //probeert in de database de data te vinden die gelijk is met de email die is ingevuld.
     try {
@@ -43,9 +42,10 @@ if (isset($_POST["submit"])) {
             if (password_verify($password, $hash)) {
                 $_SESSION["medewerkerID"] = 1;
                 $_SESSION["email"] = $result["email"];
+                $_SESSION["admin"] = 1;
                 $_SESSION["STATUS"] = 1;
 
-                header("Location: http://localhost/projectFFF/pages/index.php");
+                header("Location: http://localhost/projectFFF/medewerkerPagina.php");
                 exit;
 
                 //error message als de inloggegevens verkeerd zijn ingevuld.
