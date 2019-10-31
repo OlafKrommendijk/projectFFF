@@ -33,7 +33,7 @@
                     <a href="productenPage.php">Producten</a>
                 </li>
                 <li>
-                    <a href="#">Winkelmand</a>
+                    <a href="shoppingcart.php">Winkelmand</a>
                 </li>
                 <li>
                     <a href="contactPage.php">Contact</a>

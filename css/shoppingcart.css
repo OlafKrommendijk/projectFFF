@@ -1,0 +1,42 @@
+form{
+    width:50%;
+    margin-top: 4%;
+
+    margin-left: 5%;
+
+    display: inline-block;
+}
+
+input  {
+    width:25%;
+
+    margin-bottom: 1%;
+
+    background-color: lightgray;
+    border-radius: 7px;
+    text-align: center;
+    color: black;
+}
+
+
+input#submit {
+    height: 24px;
+    border:solid;
+    border-color: black;
+    border-radius: 7px;
+
+
+    background: rgba(135,100,82,0.75);
+    color: gray;
+
+    text-align: center;
+
+    width:100%;
+    margin:0;
+    padding:0;
+    margin-bottom: 4%;
+}
+input#submit:hover {
+    opacity: 0.8;
+    filter: alpha(opacity=8);
+}
