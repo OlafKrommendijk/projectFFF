@@ -13,7 +13,7 @@
 
     <div class="categorie">
         <form method="POST">
-            <!--select box voor categorien-->
+            <!--selecteren van de categorien-->
             <select class="catSelect" name="categorie" onchange="this.form.submit()">
                 <option>------------</option>
                 <option value="allArticles">alle artikelen</option>

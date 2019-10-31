@@ -27,7 +27,7 @@
         <nav class="main-nav">
             <ul class="main-nav-list">
                 <li>
-                    <a href="index.php">Home</a>
+                    <a href="medewerkerPagina.php">Home</a>
                 </li>
                 <li>
                     <a href="productenPage.php">Producten</a>

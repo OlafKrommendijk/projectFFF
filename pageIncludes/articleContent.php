@@ -11,12 +11,29 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html lang="nl">
 <head>
     <link rel="stylesheet" href="./css/article.css">
+    <script type="text/javascript" src="articleJS.js"></script>
 </head>
 <body>
 
 <div id="page-wrapper">
 
 <?php
+
+function IsChecked($chkname,$value)
+{
+    if(!empty($_POST[$chkname]))
+    {
+        foreach($_POST[$chkname] as $chkval)
+        {
+            if($chkval == $value)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
     foreach($products as $product){
         $afbeelding = $product['afbeelding'];
 
@@ -29,6 +46,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo '<p>'.$product['beschrijving'] .'</p>';
         echo '<br>';
 
+
         if ($product['prijs'] === NULL){
             echo '<br>';
             echo 'Prijs per dag: €' . $product['prijsDag']/100;
@@ -39,9 +57,34 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo 'Koopprijs: €' . $product['prijs']/100;
             echo '<br><br><br>';
         }
+
+        if ($product['onderhoud'] === 1) {
+
+            $onderhoud = "UPDATE product SET onderhoud='0' WHERE productID = '".$productID."'";
+        } else{
+
+            $onderhoud = "UPDATE product SET onderhoud='1' WHERE productID = '".$productID."'";
+        }
+
+        if (isset($_POST['inOnderhoud'])){
+            $stmt = $db->prepare($onderhoud);
+            $stmt->execute(array());
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+            $message = "Product in of uit onderhoud gezet";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+
+
+
+
         echo '</div>';
     }
 ?>
+
+
+
 
 </div>
 </body>
