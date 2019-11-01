@@ -1,17 +1,7 @@
-<?php
-$productID = $_POST['productID'];
-
-$query = "SELECT * FROM product WHERE productID = '".$productID."'";
-$stmt = $db->prepare($query);
-$stmt->execute(array());
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <link rel="stylesheet" href="./css/article.css">
-    <script type="text/javascript" src="articleJS.js"></script>
 </head>
 <body>
 
@@ -19,71 +9,56 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <?php
 
-function IsChecked($chkname,$value)
-{
-    if(!empty($_POST[$chkname]))
-    {
-        foreach($_POST[$chkname] as $chkval)
-        {
-            if($chkval == $value)
-            {
-                return true;
-            }
-        }
-    }
-    return false;
-}
 
-    foreach($products as $product){
-        $afbeelding = $product['afbeelding'];
+$query = "SELECT * FROM product WHERE productID = ?";
+$stmt = $db->prepare($query);
+$stmt->execute(array($_GET['id']));
+$products = $stmt->fetch();
 
-        echo '<div class="productAfbeelding"><img src="' . $afbeelding .  '" alt="Productafbeelding"></div>';
+
+        echo '<div class="productAfbeelding"><img src="'.$products['afbeelding'].'" alt="Productafbeelding"></div>';
         echo '<br>';
 
         echo '<div class="descBox">';
-        echo '<h1>'. $product['naam'] .'</h1>';
+        echo '<h1>'. $products['naam'] .'</h1>';
 
-        echo '<p>'.$product['beschrijving'] .'</p>';
+        echo '<p>'.$products['beschrijving'] .'</p>';
         echo '<br>';
 
 
-        if ($product['prijs'] === NULL){
+        if ($products['prijs'] === NULL){
             echo '<br>';
-            echo 'Prijs per dag: €' . $product['prijsDag']/100;
+            echo 'Prijs per dag: €' . $products['prijsDag']/100;
             echo '<br>';
-            echo 'Prijs per week: €' . $product['prijsWeek']/100;
+            echo 'Prijs per week: €' . $products['prijsWeek']/100;
             echo '<br>';
         } else{
-            echo 'Koopprijs: €' . $product['prijs']/100;
+            echo 'Koopprijs: €' . $products['prijs']/100;
             echo '<br><br><br>';
         }
 
-        if ($product['onderhoud'] === 1) {
+        echo '<form method="POST"><div class="onderhoud">';
+            if ($products["onderhoud"] == 0) {
+                echo '<input type="checkbox" value="unchecked" name="unchecked" onchange="this.form.submit();"> In onderhoud';
+            } else if ($products["onderhoud"] == 1) {
+                echo '<input type="checkbox" value="checked" name="checked" onchange="this.form.submit()"><a style="color: red">In onderhoud</a>';
+            }
+        echo '</div></form>';
 
-            $onderhoud = "UPDATE product SET onderhoud='0' WHERE productID = '".$productID."'";
-        } else{
+        if (isset($_POST["unchecked"])) {
+            $query = "UPDATE product SET onderhoud='1' WHERE productID='".$products['productID']."'";
+            $db->exec($query);
+            header('Refresh:0');
+            exit;
 
-            $onderhoud = "UPDATE product SET onderhoud='1' WHERE productID = '".$productID."'";
+        } else if (isset($_POST["checked"])) {
+            $query = "UPDATE product SET onderhoud='0' WHERE productID='".$products['productID']."'";
+            $db->exec($query);
+            header('Refresh:0');
+            exit;
         }
-
-        if (isset($_POST['inOnderhoud'])){
-            $stmt = $db->prepare($onderhoud);
-            $stmt->execute(array());
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-            $message = "Product in of uit onderhoud gezet";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-        }
-
-
-
-
         echo '</div>';
-    }
 ?>
-
-
 
 
 </div>

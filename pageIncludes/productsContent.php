@@ -64,10 +64,11 @@
             foreach($products as $product){
                 $i++;
                 $afbeelding = $product['afbeelding'];
-                $productId = $product['productID'];
+                $productID = $product['productID'];
 
                 echo '<div class="productNumber' . $i .'"><div class="products">';
 
+                echo '<a href="./articlePage.php?id='.$product["productID"].'">';
                 echo '<div class="productAfbeelding"><img src="' . $afbeelding .  '" alt="Productafbeelding"></div>';
                 echo '<br>';
                 echo $product['naam'];
@@ -82,9 +83,9 @@
                     echo 'Koopprijs: €' . $product['prijs']/100;
                     echo '<br><br><br>';
                 }
+                echo '</a>';
 
                 echo '<br>';
-                echo '<form method="POST" action="./articlePage.php"><input type="hidden" name="productID" value="'.$productId.'" /><input class="button" type="submit" value="Koop of Huur nu" /></form>';
                 echo '</div>';
                 echo '</div>';
             }
