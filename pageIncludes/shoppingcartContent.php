@@ -1,8 +1,5 @@
 <?php
 ?>
-
-<!--Pagina waar een bezoeker zich kan registreren-->
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -13,7 +10,26 @@
 <div class="page-wrapper">
 
     <div id="shoppingcartProducts">
-
+        <?php
+        if (!$_SESSION['cart'] ) {
+            echo 'Er zit geen product in uw winkelwagen';
+        }else{
+            foreach ($_SESSION['cart'] as $pId => $items) {
+            echo '<div id="product">';
+            echo '<div class="productAfbeelding"><img src="' . $items['pImage'] . '" alt="Productafbeelding"><br />';
+            echo $items['pName'] . '<br />';
+            echo $items['pStartDate'] . '<br />';
+            echo $items['pEndDate'] . '<br />';
+            if ($items['price'] == 0) {
+                echo '€ ' . $items['priceDay'] / 100 . '<br />';
+                echo '€ ' . $items['priceWeek'] / 100 . '<br />';
+                } else {
+                    echo '€ ' . $items['price'] / 100 . '<br />';
+                }
+                echo '</div>';
+            }
+        }
+    ?>
     </div>
 
     <form id="cartForm" method="POST">
@@ -30,4 +46,5 @@
     </form>
 </div>
 </html>
+
 

@@ -16,8 +16,36 @@ $stmt->execute(array($_GET['id']));
 $products = $stmt->fetch();
 
 
-        echo '<div class="productAfbeelding"><img src="'.$products['afbeelding'].'" alt="Productafbeelding"></div>';
+        echo '<div class="productAfbeelding"><img src="'.$products['afbeelding'].'" alt="Productafbeelding">';
         echo '<br>';
+
+        echo '<form method="post"><div class="reserveren">';
+            echo '<input class="startDate" type="date" name="startDate"> Begin Datum  &nbsp';
+            echo '<input class="endDate" type="date" name="endDate"> Eind Datum<br>';
+
+            echo '<input class="amount" type="number" name="amount"> Aantal<br>';
+
+            echo '<input type="submit" name="submit" id="submit" value="Reserveer">';
+        echo '</form></div></div>';
+
+        if (isset($_POST["submit"])) {
+            $pStartDate = htmlspecialchars($_POST["startDate"]);
+            $pEndDate = htmlspecialchars($_POST["endDate"]);
+            $pAmount = htmlspecialchars($_POST["amount"]);
+            $pName = $products['naam'];
+            $pImage = $products['afbeelding'];
+            $price = $products['prijs'];
+            $priceDay = $products['prijsDag'];
+            $priceWeek = $products['prijsWeek'];
+            $pId = $_GET['id'];
+
+            $message = 'Product gereserveerd';
+
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            $_SESSION['cart'][$pId] = Array('pImage'=>$pImage, 'pName'=>$pName,'pStartDate'=>$pStartDate, 'pEndDate'=>$pEndDate, 'price'=>$price, 'priceWeek'=>$priceWeek, 'priceDay'=>$priceDay, 'pAmount'=>$pAmount);
+
+        }
+
 
         echo '<div class="descBox">';
         echo '<h1>'. $products['naam'] .'</h1>';
