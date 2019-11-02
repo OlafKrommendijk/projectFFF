@@ -23,10 +23,8 @@
             Email:<br>
             <input required type="email" name="email" placeholder="bij@voorbeeld.com"  />
             <br>
-
-
             Korting in %:<br>
-            <select>
+            <select name="procent">
                 <option value="5">5%</option>
                 <option value="10">10%</option>
                 <option value="15">15%</option>
@@ -46,19 +44,39 @@
                 <option value="85">85%</option>
                 <option value="90">90%</option>
                 <option value="95">95%</option>
-
             </select>
             <br><br>
-
             <input type="hidden" name="submit" value="true" />
             <input type="submit" id="submit" value=" Korting Geven! " />
         </form>
     </div>
-
-
 </div>
 </body>
 </html>
 
 <?php
+
+if (isset($_POST['submit'])) {
+   $email = htmlspecialchars($_POST['email']);
+   $korting = isset($_POST['procent']) ? $_POST['procent'] : false;
+
+    $query = "SELECT email FROM klant WHERE email=?";
+    $stmt = $db->prepare($query);
+    $stmt->execute(array($email));
+    $emailCheck = $stmt->fetch();
+
+    if ($korting && $emailCheck) {
+        $query = "UPDATE klant SET korting='".$_POST['procent']."' WHERE email='".$_POST['email']."'";
+        $stmt = $db->prepare($query);
+        $stmt->execute(array());
+
+        $message = "Korting gegeven!";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+
+    } else {
+        echo "Vul een juist emailadres of korting in";
+        exit;
+    }
+}
+
 ?>

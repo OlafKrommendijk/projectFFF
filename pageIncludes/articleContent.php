@@ -8,7 +8,9 @@
 <div id="page-wrapper">
 
 <?php
+$pId = $_GET['id'];
 
+$_SESSION['cart'][$pId] = Array();
 
 $query = "SELECT * FROM product WHERE productID = ?";
 $stmt = $db->prepare($query);
@@ -37,7 +39,6 @@ $products = $stmt->fetch();
             $price = $products['prijs'];
             $priceDay = $products['prijsDag'];
             $priceWeek = $products['prijsWeek'];
-            $pId = $_GET['id'];
 
             $message = 'Product gereserveerd';
 
