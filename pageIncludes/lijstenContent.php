@@ -16,6 +16,23 @@
         <a href="./bestellingenRetour.php" class="myButton">Bestellingen / retour</a>
     </div>
 
+    <div class="lijstBox">
+        <form name="lijstSelect" method="POST" enctype="multipart/form-data" action=" ">
+            Selecteer uw lijst:<br>
+            <select name="select">
+                <option value="medewerker">Medewerker</option>
+                <option value="chaff1">Chauffeur 1</option>
+                <option value="chaff2">Chauffeur 2</option>
+                <option value="chaff3">Chauffeur 3</option>
+            </select>
+            <br><br>
+            <input type="hidden" name="submit" value="true" />
+            <input type="submit" id="submit" value="Download gekozen lijst" />
+        </form>
+    </div>
+
+
+
 </div>
 </body>
 </html>

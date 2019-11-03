@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/css/shoppingcart.css" description="    justify-content: space-between;" line="59" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="288f7d4e-6808-4173-ae0f-8b9e732d0160" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/shoppingcart.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/shoppingcart.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pageIncludes/articleContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/articleContent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageIncludes/medewerkerPaginaContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/medewerkerPaginaContent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageIncludes/lijstenContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/lijstenContent.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pageIncludes/shoppingcartContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/shoppingcartContent.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,11 +17,30 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/../NoMercy/pages/registrerenScript.php">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="340">
+                    <caret line="24" selection-start-line="24" selection-end-line="34" selection-end-column="15" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="956679031">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.20" value="1" />
@@ -27,79 +50,71 @@
           <entry key="project.open.time.26" value="3" />
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.51" value="1" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="48" />
+          <entry key="css" value="50" />
           <entry key="html" value="1" />
           <entry key="js" value="4" />
-          <entry key="php" value="284" />
+          <entry key="php" value="295" />
+          <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="48" />
+          <entry key="CSS" value="50" />
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="4" />
-          <entry key="PHP" value="284" />
+          <entry key="PHP" value="295" />
+          <entry key="RNG Compact" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="2581" />
+          <entry key="css" value="3029" />
           <entry key="js" value="55" />
-          <entry key="php" value="8569" />
+          <entry key="php" value="9563" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="2581" />
+          <entry key="CSS" value="3029" />
           <entry key="JavaScript" value="55" />
-          <entry key="PHP" value="8569" />
+          <entry key="PHP" value="9563" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pageIncludes/shoppingcartContent.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="641">
+              <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pageIncludes/articleContent.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="77" selection-start-line="77" selection-end-line="80" selection-end-column="17" />
-              <folding>
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="1224">
+              <caret line="100" column="12" lean-forward="true" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pageIncludes/productsContent.php">
+        <entry file="file://$PROJECT_DIR$/css/shoppingcart.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="79" column="63" selection-start-line="79" selection-start-column="63" selection-end-line="79" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pageIncludes/medewerkerPaginaContent.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pageIncludes/shoppingcartContent.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="50" column="19" lean-forward="true" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="55" />
+            <state relative-caret-position="765">
+              <caret line="45" column="15" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -161,7 +176,6 @@
         <option value="$PROJECT_DIR$/chauffeurPage.php" />
         <option value="$PROJECT_DIR$/pageIncludes/chauffeurContent.php" />
         <option value="$PROJECT_DIR$/css/bestellingenRetour.css" />
-        <option value="$PROJECT_DIR$/pageIncludes/lijstenContent.php" />
         <option value="$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php" />
         <option value="$PROJECT_DIR$/articlePage.php" />
         <option value="$PROJECT_DIR$/login.php" />
@@ -173,15 +187,16 @@
         <option value="$PROJECT_DIR$/pictures/logout.php" />
         <option value="$PROJECT_DIR$/shoppingcart.php" />
         <option value="$PROJECT_DIR$/customerHeader.php" />
-        <option value="$PROJECT_DIR$/css/shoppingcart.css" />
         <option value="$PROJECT_DIR$/adminHeader.php" />
         <option value="$PROJECT_DIR$/pageIncludes/articleJS.js" />
         <option value="$PROJECT_DIR$/pageIncludes/onderhoudCheck.php" />
         <option value="$PROJECT_DIR$/css/article.css" />
         <option value="$PROJECT_DIR$/pageIncludes/productsContent.php" />
-        <option value="$PROJECT_DIR$/pageIncludes/articleContent.php" />
-        <option value="$PROJECT_DIR$/pageIncludes/shoppingcartContent.php" />
         <option value="$PROJECT_DIR$/pageIncludes/medewerkerPaginaContent.php" />
+        <option value="$PROJECT_DIR$/pageIncludes/lijstenContent.php" />
+        <option value="$PROJECT_DIR$/pageIncludes/articleContent.php" />
+        <option value="$PROJECT_DIR$/css/shoppingcart.css" />
+        <option value="$PROJECT_DIR$/pageIncludes/shoppingcartContent.php" />
       </list>
     </option>
   </component>
@@ -277,12 +292,14 @@
       <workItem from="1572530822042" duration="1444000" />
       <workItem from="1572541714236" duration="6100000" />
       <workItem from="1572602598838" duration="10978000" />
-      <workItem from="1572720387256" duration="2522000" />
+      <workItem from="1572720387256" duration="3013000" />
+      <workItem from="1572724738472" duration="9660000" />
+      <workItem from="1572739357816" duration="520000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67960000" />
+    <option name="totallyTimeSpent" value="78631000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -316,13 +333,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lijsten.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="45" selection-end-line="6" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/chauffeurPage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -430,31 +440,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/shoppingcart.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medewerkerPagina.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="31" selection-start-line="3" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shoppingcart.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/products.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -496,13 +485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/adminHeader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../NoMercy/pages/lijsten.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -538,13 +520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/lijstenContent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="20" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/indexContent.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -566,20 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../NoMercy/pages/registrerenScript.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="30" column="41" lean-forward="true" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/shoppingcartContent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="50" column="19" lean-forward="true" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/loginContent.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -594,16 +555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/articleContent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="77" selection-start-line="77" selection-end-line="80" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/productsContent.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
@@ -611,10 +562,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/medewerkerPagina.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="31" selection-start-line="3" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adminHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/web-forms.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="368" column="45" lean-forward="true" selection-start-line="368" selection-start-column="45" selection-end-line="368" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/lijstenContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="29" column="74" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/medewerkerPaginaContent.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
+        <state relative-caret-position="272">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="51" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/products.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/shoppingcart.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="45" column="15" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../NoMercy/pages/registrerenScript.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="24" selection-start-line="24" selection-end-line="34" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/articleContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="100" column="12" lean-forward="true" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/shoppingcartContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
         </state>
       </provider>
     </entry>

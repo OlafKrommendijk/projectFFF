@@ -22,30 +22,52 @@ $products = $stmt->fetch();
         echo '<br>';
 
         echo '<form method="post"><div class="reserveren">';
+
+        if ($products['prijs'] === NULL) {
             echo '<input class="startDate" type="date" name="startDate"> Begin Datum  &nbsp';
             echo '<input class="endDate" type="date" name="endDate"> Eind Datum<br>';
-
             echo '<input class="amount" type="number" name="amount"> Aantal<br>';
+            echo '<input type="submit" name="submit" id="submit" value="Reserveer!">';
+        }else {
+            echo '<input type="submit" name="submit" id="submit" value="Koop!">';
+        }
 
-            echo '<input type="submit" name="submit" id="submit" value="Reserveer">';
         echo '</form></div></div>';
 
-        if (isset($_POST["submit"])) {
-            $pStartDate = htmlspecialchars($_POST["startDate"]);
-            $pEndDate = htmlspecialchars($_POST["endDate"]);
-            $pAmount = htmlspecialchars($_POST["amount"]);
-            $pName = $products['naam'];
-            $pImage = $products['afbeelding'];
-            $price = $products['prijs'];
-            $priceDay = $products['prijsDag'];
-            $priceWeek = $products['prijsWeek'];
+        if (isset($_POST["submit"])){
+            if ($products['prijs'] === NULL) {
+                $pStartDate = htmlspecialchars($_POST["startDate"]);
+                $pEndDate = htmlspecialchars($_POST["endDate"]);
+                $pAmount = htmlspecialchars($_POST["amount"]);
+                $pName = $products['naam'];
+                $pImage = $products['afbeelding'];
+                $price = $products['prijs'];
+                $priceDay = $products['prijsDag'];
+                $priceWeek = $products['prijsWeek'];
 
-            $message = 'Product gereserveerd';
+                if(!$_POST["startDate"]|| !$_POST["endDate"] || !$_POST["amount"] || $_POST["amount"] === 0){
+                    $message = 'U moet een datum en aantal invullen';
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                } else {
+                    $message = 'Product gereserveerd';
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                    $_SESSION['cart'][$pId] = Array('pImage' => $pImage, 'pName' => $pName, 'pStartDate' => $pStartDate, 'pEndDate' => $pEndDate, 'price' => $price, 'priceWeek' => $priceWeek, 'priceDay' => $priceDay, 'pAmount' => $pAmount);
+                }
 
-            echo "<script type='text/javascript'>alert('$message');</script>";
-            $_SESSION['cart'][$pId] = Array('pImage'=>$pImage, 'pName'=>$pName,'pStartDate'=>$pStartDate, 'pEndDate'=>$pEndDate, 'price'=>$price, 'priceWeek'=>$priceWeek, 'priceDay'=>$priceDay, 'pAmount'=>$pAmount);
+            }else{
 
+                $pName = $products['naam'];
+                $pImage = $products['afbeelding'];
+                $price = $products['prijs'];
+                $priceDay = $products['prijsDag'];
+                $priceWeek = $products['prijsWeek'];
+
+                $message = 'Product gereserveerd';
+                echo "<script type='text/javascript'>alert('$message');</script>";
+                $_SESSION['cart'][$pId] = Array('pImage' => $pImage, 'pName' => $pName, 'pStartDate' => "Koopproduct", 'pEndDate' => " ", 'price' => $price, 'priceWeek' => $priceWeek, 'priceDay' => $priceDay);
+            }
         }
+
 
 
         echo '<div class="descBox">';

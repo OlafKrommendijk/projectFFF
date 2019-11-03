@@ -1,6 +1,7 @@
 form{
     width:50%;
     margin-top: 4%;
+    margin-bottom: 5%;
 
     margin-left: 5%;
 
@@ -39,4 +40,34 @@ input#submit {
 input#submit:hover {
     opacity: 0.8;
     filter: alpha(opacity=8);
+}
+
+#verwijderButton{
+    width: 80%;
+}
+.page-wrapper{
+    display: flex;
+
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.shoppingcartProducts{
+    margin-top: 2%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product {
+    display:flex;
+
+    width: 65%;
+    border: solid black 3px;
+    align-items: center;
+}
+.productAfbeelding{
+    width: 20%;
 }
