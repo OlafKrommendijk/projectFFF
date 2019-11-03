@@ -8,19 +8,22 @@
 <div id="page-wrapper">
 
 <?php
+//met get krijgt hij het productID
 $pId = $_GET['id'];
 
+//selecteert het product dat het juiste id heeft
 $query = "SELECT * FROM product WHERE productID = ?";
 $stmt = $db->prepare($query);
 $stmt->execute(array($_GET['id']));
 $products = $stmt->fetch();
 
-
+        //laat informatie over het product zien
         echo '<div class="productAfbeelding"><img src="'.$products['afbeelding'].'" alt="Productafbeelding">';
         echo '<br>';
 
         echo '<form method="post"><div class="reserveren">';
 
+        //als het een huurproduct is kan de klant een datum selecteren
         if ($products['prijs'] === NULL) {
             echo '<input class="startDate" type="date" name="startDate"> Begin Datum  &nbsp';
             echo '<input class="endDate" type="date" name="endDate"> Eind Datum<br>';
@@ -39,6 +42,7 @@ $products = $stmt->fetch();
         echo '<p>'.$products['beschrijving'] .'</p>';
         echo '<br>';
 
+        //laat de huurprijs zijn voor een huurproduct, anders de koopprijs
         if ($products['prijs'] === NULL){
             echo '<br>';
             echo 'Prijs per dag: €' . $products['prijsDag']/100;
@@ -50,6 +54,7 @@ $products = $stmt->fetch();
             echo '<br><br><br>';
         }
 
+        //Laat de knop zien voor onderhoud, als een product in onderhoud is wordt de tekst rood
         echo '<form method="POST"><div class="onderhoud">';
         if ($products["onderhoud"] == 0) {
             echo '<input type="checkbox" value="unchecked" name="unchecked" onchange="this.form.submit();"> In onderhoud';
@@ -58,6 +63,7 @@ $products = $stmt->fetch();
         }
         echo '</div></form>';
 
+        //als er op de reserveer of koop knop wordt gedrukt wordt er eerst gekeken of alle velden juist zijn ingevuld en of het een koop of huur product is
         if (isset($_POST["submit"])) {
             if ($products['prijs'] === NULL) {
                 if (!$_POST["startDate"] || !$_POST["endDate"] || !$_POST["amount"] || $_POST["amount"] === 0 || $_POST["amount"] < 1) {
@@ -84,12 +90,14 @@ $products = $stmt->fetch();
 
                     $dagen = 0;
 
+                    //rekent het aantal weken en dagen uit
                     $interval = ($pStartDateTime->diff($pEndDateTime));
                     $days = $interval->format('%d');
                     $weeks = round($days / 7, 2);
                     $whole = floor($weeks);
                     $comma = round($weeks - $whole, 2);
 
+                    //rekent de juiste prijs uit
                     switch ($comma) {
                         case 0:
                             $dagen = 0;
@@ -135,9 +143,10 @@ $products = $stmt->fetch();
                             break;
                     }
 
+                    //stopt het product in de cart session
                     $message = 'Product gereserveerd';
                     echo "<script type='text/javascript'>alert('$message');</script>";
-                    $_SESSION['cart'][$pId] = Array('pImage' => $pImage, 'pName' => $pName, 'pStartDate' => $pStartDate, 'pEndDate' => $pEndDate, 'price' => $price, 'priceTotal' => $priceTotal);
+                    $_SESSION['cart'][$pId] = Array('productId' => $pId, 'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => $pStartDate, 'pEndDate' => $pEndDate, 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount);
                 }
 
             } else {
@@ -155,18 +164,17 @@ $products = $stmt->fetch();
                     $priceDay = $products['prijsDag'];
                     $priceWeek = $products['prijsWeek'];
 
-
-                    $priceTotal = ($price) * $pAmount / 100;
+                    $priceTotal = ($price) * $pAmount;
 
                     $message = 'Product gereserveerd';
                     echo "<script type='text/javascript'>alert('$message');</script>";
-                    $_SESSION['cart'][$pId] = Array('pImage' => $pImage, 'pName' => $pName, 'pStartDate' => "Koopproduct", 'pEndDate' => " ", 'price' => $price, 'priceTotal' => $priceTotal);
+                    $_SESSION['cart'][$pId] = Array('productId' => $pId,'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => "Koopproduct", 'pEndDate' => " ", 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount);
                 }
             }
         }
 
 
-
+        //zet het product in of uit onderhoud in de database
         if (isset($_POST["unchecked"])) {
             $query = "UPDATE product SET onderhoud='1' WHERE productID='".$products['productID']."'";
             $db->exec($query);

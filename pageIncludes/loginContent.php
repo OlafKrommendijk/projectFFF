@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
         if ($result) {
             $hash = $result["wachtwoord"];
 
-            //Als het wachtwoord goed is wordt de session geupdate en wordt hij doorgestuurd naar de lijsten pagina.
+            //Als het wachtwoord goed is wordt de session geupdate en wordt hij doorgestuurd naar de pagina voor medewerkers
             if (password_verify($password, $hash)) {
                 $_SESSION["medewerkerID"] = 1;
                 $_SESSION["email"] = $result["email"];

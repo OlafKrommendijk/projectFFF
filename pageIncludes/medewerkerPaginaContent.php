@@ -25,6 +25,7 @@
             <br>
             Korting in %:<br>
             <select name="procent">
+                <option value="0">0%</option>
                 <option value="5">5%</option>
                 <option value="10">10%</option>
                 <option value="15">15%</option>
@@ -56,15 +57,18 @@
 
 <?php
 
+//kijkt of er op submit is gedrukt
 if (isset($_POST['submit'])) {
    $email = htmlspecialchars($_POST['email']);
-   $korting = isset($_POST['procent']) ? $_POST['procent'] : false;
 
+   //Pakt de korting en gaat in de database opzoek naar het ingevulde emailadres
+    $korting = isset($_POST['procent']) ? $_POST['procent'] : false;
     $query = "SELECT email FROM klant WHERE email=?";
     $stmt = $db->prepare($query);
     $stmt->execute(array($email));
     $emailCheck = $stmt->fetch();
 
+    //controleert of de email en korting is ingevuld, zoja update de table met de juist gegevens
     if ($korting && $emailCheck) {
         $query = "UPDATE klant SET korting='".$_POST['procent']."' WHERE email='".$_POST['email']."'";
         $stmt = $db->prepare($query);
@@ -74,6 +78,7 @@ if (isset($_POST['submit'])) {
         echo "<script type='text/javascript'>alert('$message');</script>";
 
     } else {
+        //Geeft een melding dat er geen juiste korting of email is ingevuld
         echo "Vul een juist emailadres of korting in";
         exit;
     }

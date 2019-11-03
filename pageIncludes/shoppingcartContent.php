@@ -48,11 +48,7 @@ if (isset($_POST['submit'])) {
     $customerNumber = htmlspecialchars($_POST['number']);
     $customerPostal = htmlspecialchars($_POST['postal']);
     $customerCity = htmlspecialchars($_POST['city']);
-
-
     $customerDeliver = $_POST['bezorgen'];
-
-
 
     if (filter_var($customerEmail, FILTER_VALIDATE_EMAIL)) {
         $checkedEmail = filter_var($customerEmail, FILTER_VALIDATE_EMAIL);
@@ -60,14 +56,11 @@ if (isset($_POST['submit'])) {
         $stmt = $db->prepare($sql);
         $stmt->execute(['email' => $customerEmail]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $response = null;
         $_SESSION["email"] = $customerEmail;
 
         if ($result > 0) {
-            echo "<script>location.href='../index.php';
-            setTimeout([alert('Het ingevulde emailadres is al in gebruikt')] ,3000);
-            </script>";
-        } else if (isset($_POST["submit"])) {
+//          Code voor als het email al in gebruik is
+        } else{
             $query = "INSERT INTO klant (naam, tussenvoegsel, achternaam, email)  VALUES ('$customerFirstname', '$customerBetween', '$customerLastname', '$customerEmail')";
             $stmt = $db->prepare($query);
             $db->exec($stmt);
@@ -75,8 +68,15 @@ if (isset($_POST['submit'])) {
             $query = "INSERT INTO address (straat, huisnummer, postcode, woonplaats)  VALUES ('$customerStreet', '$customerNumber', '$customerPostal', '$customerCity')";
             $stmt = $db->prepare($query);
             $db->exec($stmt);
+        }
 
-            $query = "INSERT INTO orderregel (bestelDatum, aantal)  VALUES ('$orderTime', '$customerNumber', '$customerPostal', '$customerCity')";
+        foreach ($_SESSION['cart'] as $pId => $items) {
+            $pId = $items['productId'];
+            $pStartDate = $items['pStartDate'];
+            $pEndDate = $items['pEndDate'];
+            $pAmount = $items['pAmount'];
+
+            $query = "INSERT INTO orderregel (orderRegel_artikelID, bestelDatum, retourDatum, aantal)  VALUES ('$pId', '$pStartDate', '$pEndDate', '$pAmount')";
             $stmt = $db->prepare($query);
             $db->exec($stmt);
         }
