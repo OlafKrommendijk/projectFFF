@@ -10,9 +10,6 @@
 <div class="page-wrapper">
     <div class="shoppingcartProducts">
         <?php
-
-
-
         if (isset($_SESSION['cart'] )) {
             foreach ($_SESSION['cart'] as $pId => $items) {
                 echo '<div class="product">';
@@ -83,10 +80,7 @@ if (isset($_POST['submit'])) {
             $stmt = $db->prepare($query);
             $db->exec($stmt);
         }
-
-
     }
-
 }
 ?>
 
