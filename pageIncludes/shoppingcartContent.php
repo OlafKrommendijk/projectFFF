@@ -10,15 +10,13 @@
 <div class="page-wrapper">
     <div class="shoppingcartProducts">
         <?php
+
+
+
         if (isset($_SESSION['cart'] )) {
             foreach ($_SESSION['cart'] as $pId => $items) {
                 echo '<div class="product">';
-                echo '<div class="productAfbeelding"><img src="' . $items['pImage'] . '" alt="Productafbeelding"></div><pre class="tab">' . ' ' . $items['pName'] .  '        ' . $items['pStartDate'] . '     ' . $items['pEndDate'] . '     ';
-                if ($items['price'] == 0) {
-                    echo '€' . $items['priceDay'] / 100 . ' ' . '€' . $items['priceWeek'] / 100;
-                } else {
-                    echo '€' . $items['price'] / 100;
-                }
+                echo '<div class="productAfbeelding"><img src="' . $items['pImage'] . '" alt="Productafbeelding"></div><pre class="tab">' . ' ' . $items['pName'] .  '        ' . $items['pStartDate'] . '     ' . $items['pEndDate'] . '     €' . $items['price'] . '       €' .$items['priceTotal'];
                 echo '<form id="verwijderButton" method="POST"><input type="submit" name="verwijder" id="verwijder" value="verwijder"></form></pre></div>';
             }
         }else{
@@ -53,7 +51,7 @@ if (isset($_POST['submit'])) {
     $customerNumber = htmlspecialchars($_POST['number']);
     $customerPostal = htmlspecialchars($_POST['postal']);
     $customerCity = htmlspecialchars($_POST['city']);
-    
+
 
     $customerDeliver = $_POST['bezorgen'];
 
