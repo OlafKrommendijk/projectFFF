@@ -1,3 +1,10 @@
+<?php
+// Turn off all error reporting
+error_reporting(0);
+error_reporting( error_reporting() & ~E_NOTICE )
+?>
+
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -56,10 +63,13 @@ $products = $stmt->fetch();
 
         //Laat de knop zien voor onderhoud, als een product in onderhoud is wordt de tekst rood
         echo '<form method="POST"><div class="onderhoud">';
-        if ($products["onderhoud"] == 0) {
+        if ($products["onderhoud"] == 0 && $_SESSION["admin"] && $_SESSION["STATUS"] === 1) {
             echo '<input type="checkbox" value="unchecked" name="unchecked" onchange="this.form.submit();"> In onderhoud';
-        } else if ($products["onderhoud"] == 1) {
+        } else if ($products["onderhoud"] == 1 && $_SESSION["admin"] && $_SESSION["STATUS"] === 1) {
             echo '<input type="checkbox" value="checked" name="checked" onchange="this.form.submit()"><a style="color: red">In onderhoud</a>';
+        }
+        else{
+            echo " ";
         }
         echo '</div></form>';
 
@@ -95,10 +105,10 @@ $products = $stmt->fetch();
                     $days = $interval->format('%d');
                     $weeks = round($days / 7, 2);
                     $whole = floor($weeks);
-                    $comma = round($weeks - $whole, 2);
+                    $dagenComma = round($weeks - $whole, 2);
 
                     //rekent de juiste prijs uit
-                    switch ($comma) {
+                    switch ($dagenComma) {
                         case 0:
                             $dagen = 0;
 
@@ -168,7 +178,7 @@ $products = $stmt->fetch();
 
                     $message = 'Product gereserveerd';
                     echo "<script type='text/javascript'>alert('$message');</script>";
-                    $_SESSION['cart'][$pId] = Array('productId' => $pId,'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => "Koopproduct", 'pEndDate' => " ", 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount);
+                    $_SESSION['cart'][$pId] = Array('productId' => $pId,'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => " Koopproduct", 'pEndDate' => " ", 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount);
                 }
             }
         }

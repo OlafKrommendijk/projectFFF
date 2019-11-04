@@ -20,8 +20,6 @@
 </html>
 
 <?php
-$error = " ";
-
 //checked over op de submit knop is gedrukt.
 if (isset($_POST["submit"])) {
     $email = htmlspecialchars($_POST["email"]);

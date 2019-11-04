@@ -8,7 +8,7 @@ form{
     display: inline-block;
 }
 
-input  {
+.shoppingcartInput  {
     width:25%;
 
     margin-bottom: 1%;
@@ -28,23 +28,17 @@ input#submit {
 
 
     background: rgba(135,100,82,0.75);
-    color: gray;
+    color: black;
 
     text-align: center;
 
-    width:100%;
+    width:25%;
     margin:0;
     padding:0;
     margin-bottom: 4%;
 }
-input#submit:hover {
-    opacity: 0.8;
-    filter: alpha(opacity=8);
-}
 
-#verwijderButton{
-    width: 80%;
-}
+
 .page-wrapper{
     display: flex;
 
