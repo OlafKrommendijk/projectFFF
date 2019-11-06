@@ -14,7 +14,7 @@
             foreach ($_SESSION['cart'] as $pId => $items) {
                 echo '<div class="product">';
                 echo '<div class="productAfbeelding"><img src="' . $items['pImage'] . '" alt="Productafbeelding"></div><pre class="tab">' . ' ' . $items['pName'] .  '        ' . $items['pStartDate'] . '     ' . $items['pEndDate'] . '     €' . $items['price'] . '       €' .$items['priceTotal'];
-                echo '</form></div>';
+                echo '<form class="verwijder" method="POST"><input class="hidden" type="hidden" name="productId" value="'.$items['productId'].'"><input type="submit" name="deleteProduct" value="Verwijder"></form></div>';
             }
         }else{
             echo 'Er zit geen product in uw winkelwagen';
@@ -38,6 +38,15 @@
 </html>
 
 <?php
+if (isset($_POST['deleteProduct'])) {
+    $pId = htmlspecialchars($_POST['productId']);
+
+    unset($_SESSION['cart'][$pId]);
+    echo "<script> alert('Het product is verwijderd uit uw winkelwagen');</script>";
+    header('Refresh:0');
+}
+
+
 if (isset($_POST['submit'])) {
     $customerEmail = htmlspecialchars($_POST['email']);
     $customerFirstname = htmlspecialchars($_POST['firstname']);
