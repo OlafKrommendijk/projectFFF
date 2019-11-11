@@ -69,7 +69,7 @@ $products = $stmt->fetch();
             echo '<input type="checkbox" value="checked" name="checked" onchange="this.form.submit()"><a style="color: red">In onderhoud</a>';
         }
         else{
-            echo " ";
+            echo ' ';
         }
         echo '</div></form>';
 
@@ -84,25 +84,33 @@ $products = $stmt->fetch();
                 } else {
                     $_SESSION['cart'][$pId] = Array();
 
-                    $pStartDate = htmlspecialchars($_POST["startDate"]);
-                    $pEndDate = htmlspecialchars(htmlspecialchars($_POST["endDate"]));
-
+                    $pStartDate = $_POST["startDate"];
+                    $pEndDate = $_POST["endDate"];
+                    $dateNow = new DateTime();
                     $pStartDateTime = new DateTime($pStartDate);
                     $pEndDateTime = new DateTime ($pEndDate);
 
+                }
+                if($pEndDate < $pStartDate){
+                    $message = 'De einddatum moet zich bevinden voor de startdatum';
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+//                }elseif($pStartDate < new DateTime()){
+//                    $message = 'De startdatum moet vandaag of na vandaag zijn ';
+//                    echo "<script type='text/javascript'>alert('$message');</script>";
+                }else {
                     $pAmount = htmlspecialchars($_POST["amount"]);
-
                     $pName = $products['naam'];
                     $pImage = $products['afbeelding'];
                     $price = $products['prijs'];
                     $priceDay = $products['prijsDag'];
                     $priceWeek = $products['prijsWeek'];
+                    $category = $products['artikel_categorieID'];
 
                     $dagen = 0;
 
                     //rekent het aantal weken en dagen uit
                     $interval = ($pStartDateTime->diff($pEndDateTime));
-                    $days = $interval->format('%d');
+                    $days = $days = $interval->format('$a');
                     $weeks = round($days / 7, 2);
                     $whole = floor($weeks);
                     $dagenComma = round($weeks - $whole, 2);
@@ -152,35 +160,33 @@ $products = $stmt->fetch();
                             $priceTotal = ((($priceWeek * $whole) + ($priceDay * $dagen)) / 100) * $pAmount;
                             break;
                     }
-
                     //stopt het product in de cart session
                     $message = 'Product gereserveerd';
                     echo "<script type='text/javascript'>alert('$message');</script>";
-                    $_SESSION['cart'][$pId] = Array('productId' => $pId, 'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => $pStartDate, 'pEndDate' => $pEndDate, 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount);
-                }
+                    $category = $products['artikel_categorieID'];
 
-            } else {
-                if ($_POST["amount"] === 0 || $_POST["amount"] < 1) {
+                    $_SESSION['cart'][$pId] = Array('productId' => $pId, 'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => $pStartDate, 'pEndDate' => $pEndDate, 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount, 'artikel_categorieID' => $category);
+                }
+            } elseif ($_POST["amount"] === 0 || $_POST["amount"] < 1) {
                     $message = 'U moet een aantal invullen';
                     echo "<script type='text/javascript'>alert('$message');</script>";
 
                     exit();
-                }else {
-                    $pAmount = htmlspecialchars($_POST["amount"]);
+            }else {
+                $pAmount = htmlspecialchars($_POST["amount"]);
 
-                    $pName = $products['naam'];
-                    $pImage = $products['afbeelding'];
-                    $price = $products['prijs'] / 100;
-                    $priceDay = $products['prijsDag'];
-                    $priceWeek = $products['prijsWeek'];
+                $pName = $products['naam'];
+                $pImage = $products['afbeelding'];
+                $price = $products['prijs'] / 100;
+                $priceDay = $products['prijsDag'];
+                $priceWeek = $products['prijsWeek'];
+                $category = $products['artikel_categorieID'];
+                $priceTotal = ($price) * $pAmount;
 
-                    $priceTotal = ($price) * $pAmount;
-
-                    $message = 'Product gereserveerd';
-                    echo "<script type='text/javascript'>alert('$message');</script>";
-                    $_SESSION['cart'][$pId] = Array('productId' => $pId,'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => " Koopproduct", 'pEndDate' => " ", 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount);
+                $message = 'Product gereserveerd';
+                echo "<script type='text/javascript'>alert('$message');</script>";
+                $_SESSION['cart'][$pId] = Array('productId' => $pId,'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => " Koopproduct", 'pEndDate' => " ", 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount, 'artikel_categorieID' => $category);
                 }
-            }
         }
 
 

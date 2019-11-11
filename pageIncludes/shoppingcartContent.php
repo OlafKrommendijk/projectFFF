@@ -31,7 +31,7 @@
         <input class="shoppingcartInput" type="number" name="number" placeholder="Huisnummer"> Huisnummer<br>
         <input class="shoppingcartInput" type="text" name="postal" placeholder="Postcode"> Postcode<br>
         <input class="shoppingcartInput" type="text" name="city" placeholder="Stad"> Stad<br>
-        <input class="shoppingcartInput" type="radio" name="bezorgen"> Bezorgkosten + €50,-
+        <input class="shoppingcartInput" type="checkbox" name="bezorgen" id="bezorg" value=1> Bezorgkosten + €50,-
         <input type="submit" id="submit" name="submit" value="Koop/Reserveer">
     </form>
 </div>
@@ -46,7 +46,6 @@ if (isset($_POST['deleteProduct'])) {
     header('Refresh:0');
 }
 
-
 if (isset($_POST['submit'])) {
     $customerEmail = htmlspecialchars($_POST['email']);
     $customerFirstname = htmlspecialchars($_POST['firstname']);
@@ -54,62 +53,121 @@ if (isset($_POST['submit'])) {
     $customerLastname = htmlspecialchars($_POST['lastname']);
     $customerStreet = htmlspecialchars($_POST['street']);
     $customerNumber = htmlspecialchars($_POST['number']);
-    $customerPostal = htmlspecialchars($_POST['postal']);
+    $postal = htmlspecialchars($_POST['postal']);
+    $customerPostal = substr(str_replace(' ', '', strtoupper($postal)), 0, 6);
     $customerCity = htmlspecialchars($_POST['city']);
 
-//    $customerDeliver = $_POST['bezorgen'];
+    if(!preg_match('/\d\d\d\d[A-Z]{2}/', $customerPostal)){
+        $message = 'Voer uw postcode juist in';
+        echo "<script type='text/javascript'>alert('$message');</script>";
 
-
-    if (filter_var($customerEmail, FILTER_VALIDATE_EMAIL)) {
-        $checkedEmail = filter_var($customerEmail, FILTER_VALIDATE_EMAIL);
-        $sql = "SELECT email FROM klant WHERE email = :email";
-        $stmt = $db->prepare($sql);
-        $stmt->execute(['email' => $customerEmail]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($result > 0) {
-//          Code voor als het email al in gebruik is
+    }else if(empty($customerEmail) || empty($customerFirstname) || empty($customerLastname) || empty($customerStreet) || empty($customerNumber) || empty($customerPostal) || empty($customerCity)){
+        $message = 'Voer alle velden in';
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }else if (filter_var($customerEmail, FILTER_VALIDATE_EMAIL)) {
+            $checkedEmail = filter_var($customerEmail, FILTER_VALIDATE_EMAIL);
             $sql = "SELECT email FROM klant WHERE email = :email";
             $stmt = $db->prepare($sql);
-            $stmt->execute(['email' => $customerEmail]);
+            $stmt->execute(['email' => $checkedEmail]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            $klantId = $result['klantid'];
 
-
-        } else {
-            $query = "INSERT INTO klant (naam, tussenvoegsel, achternaam, email)  VALUES ('$customerFirstname', '$customerBetween', '$customerLastname', '$customerEmail')";
-            $db->exec($query);
-
-            if ($query) {
-                $sql = "SELECT email FROM klant WHERE email = :email";
-                $stmt = $db->prepare($sql);
+            if ($result > 0) {
+//          Code voor als het email al in gebruik is
+                $query = "SELECT klantID FROM klant WHERE email = :email";
+                $stmt = $db->prepare($query);
                 $stmt->execute(['email' => $customerEmail]);
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                $klantId = $result['klantid'];
+                $klantId = implode($result);
 
-                $query = "INSERT INTO address (address_klantID, straat, huisnummer, postcode, woonplaats)  VALUES ('$klantId', '$customerStreet', '$customerNumber', '$customerPostal', '$customerCity')";
+                if($query){
+                    $query = "SELECT straat, huisnummer, postcode, woonplaats FROM address WHERE address_klantID = '$klantId'";
+                    $stmt = $db->prepare($query);
+                    $stmt->execute(['email' => $customerEmail]);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if($result['straat'] !== $customerStreet || $result['huisnummer'] !== $customerNumber || $result['woonplaats'] !== $customerCity || $result['postcode'] !== $customerPostal){
+                        $query = "INSERT INTO address (address_klantID, straat, huisnummer, postcode, woonplaats)  VALUES ('$klantId', '$customerStreet', '$customerNumber', '$customerPostal', '$customerCity')";
+                        $db->exec($query);
+                    }
+                }
+
+
+            }else {
+                $query = "INSERT INTO klant (naam, tussenvoegsel, achternaam, email)  VALUES ('$customerFirstname', '$customerBetween', '$customerLastname', '$customerEmail')";
+                $db->exec($query);
+
+                if ($query) {
+                    $sql = "SELECT klantID FROM klant WHERE email = :email";
+                    $stmt = $db->prepare($sql);
+                    $stmt->execute(['email' => $customerEmail]);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $klantId = implode($result);
+
+                    $query = "INSERT INTO address (address_klantID, straat, huisnummer, postcode, woonplaats)  VALUES ('$klantId', '$customerStreet', '$customerNumber', '$customerPostal', '$customerCity')";
+                    $db->exec($query);
+                }
+            }
+
+
+            $query = "SELECT addressID FROM address WHERE address_klantID = '$klantId' AND straat  = '$customerStreet' AND huisnummer = '$customerNumber' AND postcode = '$customerPostal' AND woonplaats = '$customerCity'";
+            $stmt = $db->prepare($query);
+            $stmt->execute([]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $addressID = $result['addressID'];
+
+            if ($query) {
+                if(isset($_POST['bezorgen'])){
+                    $customerDeliver = $_POST['bezorgen'];
+                    $totaalprijs = 50;
+                }else{
+                    $customerDeliver = 0;
+                    $totaalprijs = 0;
+                }
+                $query = "INSERT INTO orders (orders_klantID, orders_addressID, bezorgen)  VALUES ('$klantId', '$addressID', '$customerDeliver')";
                 $db->exec($query);
             }
-        }
+
+            foreach ($_SESSION['cart'] as $pId => $items) {
+                $pId = $items['productId'];
+                $pAmount = $items['pAmount'];
+                $pCategory = $items['artikel_categorieID'];
+                $totaalprijs = $totaalprijs + $items['priceTotal'];
+
+                $query = "SELECT ordersID FROM orders WHERE orders_klantID = '$klantId' AND orders_addressID = '$addressID'";
+                $stmt = $db->prepare($query);
+                $stmt->execute([]);
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                $orderId = implode($result);
+
+                //Kijkt of het product een koop of huur product is
+                if ($pCategory == 1) {
+                    $query = "INSERT INTO orderregel (orderRegel_artikelID, orderRegel_orderID, aantal)  VALUES ('$pId', '$orderId', '$pAmount')";
+                    $stmt = $db->prepare($query);
+                    $stmt->execute([]);
+                } else {
+                    $pStartDate = $items['pStartDate'];
+                    $pEndDate = $items['pEndDate'];
+
+                    $query = "INSERT INTO orderregel (orderRegel_artikelID, orderRegel_orderID, bestelDatum, retourDatum, aantal)  VALUES ('$pId', '$orderId', '$pStartDate', '$pEndDate', '$pAmount')";
+                    $stmt = $db->prepare($query);
+                    $stmt->execute([]);
+                }
+            }
+
+            $query = "UPDATE orders SET totaalprijs = '$totaalprijs' WHERE ordersID = '$orderId'";
+            $stmt = $db->prepare($query);
+            $stmt->execute([]);
+
+            $message = "Winkelwagen is gereserveerd!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+
+            unset($_SESSION['cart']);
+            header('Refresh:0');
+            exit;
+    }else{
+        $message = "Voer uw winkelwagen juist in";
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
-
-    $query = "INSERT INTO 'order' (order_klantID)  VALUES ('$klantId')";
-    $db->exec($query);
-
-    foreach ($_SESSION['cart'] as $pId => $items) {
-        $pId = $items['productId'];
-        $pStartDate = $items['pStartDate'];
-        $pEndDate = $items['pEndDate'];
-        $pAmount = $items['pAmount'];
-
-        $query = "SELECT orderId FROM 'order' WHERE order_klantID = '$result'";
-        $stmt = $db->prepare($query);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $orderId = $result;
-
-        $query = "INSERT INTO orderregel (orderRegel_artikelID, orderRegel_orderID, bestelDatum, retourDatum, aantal)  VALUES ('$pId', $orderId, '$pStartDate', '$pEndDate', '$pAmount')";
-        $db->exec($query);
-        }
 }
 ?>
 
