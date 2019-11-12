@@ -116,52 +116,52 @@ $products = $stmt->fetch();
                     $interval = date_diff($pStartDateTime, $pEndDateTime);
                     $days = $interval->format("%a");
                     $weeks = round($days / 7, 2);
-                    $whole = floor($weeks);
-                    $dagenComma = round($weeks - $whole, 2);
+                    $week = floor($weeks);
+                    $dagenComma = round($weeks - $week, 2);
 
                     //rekent de juiste prijs uit
                     switch ($dagenComma) {
                         case 0:
                             $dagen = 0;
 
-                            $price = (($priceWeek * $whole) + ($priceDay * $dagen)) / 100;
-                            $priceTotal = ((($priceWeek * $whole) + ($priceDay * $dagen)) / 100) * $pAmount;
+                            $price = (($priceWeek * $week) + ($priceDay * $dagen)) / 100;
+                            $priceTotal = ((($priceWeek * $week) + ($priceDay * $dagen)) / 100) * $pAmount;
                             break;
                         case 0.14:
                             $dagen = 1;
 
-                            $price = (($priceWeek * $whole) + ($priceDay * $dagen)) / 100;
-                            $priceTotal = ((($priceWeek * $whole) + ($priceDay * $dagen)) / 100) * $pAmount;
+                            $price = (($priceWeek * $week) + ($priceDay * $dagen)) / 100;
+                            $priceTotal = ((($priceWeek * $week) + ($priceDay * $dagen)) / 100) * $pAmount;
                             break;
                         case 0.29:
                             $dagen = 2;
 
-                            $price = (($priceWeek * $whole) + ($priceDay * $dagen)) / 100;
-                            $priceTotal = ((($priceWeek * $whole) + ($priceDay * $dagen)) / 100) * $pAmount;
+                            $price = (($priceWeek * $week) + ($priceDay * $dagen)) / 100;
+                            $priceTotal = ((($priceWeek * $week) + ($priceDay * $dagen)) / 100) * $pAmount;
                             break;
                         case 0.43:
                             $dagen = 3;
 
-                            $price = (($priceWeek * $whole) + ($priceDay * $dagen)) / 100;
-                            $priceTotal = ((($priceWeek * $whole) + ($priceDay * $dagen)) / 100) * $pAmount;
+                            $price = (($priceWeek * $week) + ($priceDay * $dagen)) / 100;
+                            $priceTotal = ((($priceWeek * $week) + ($priceDay * $dagen)) / 100) * $pAmount;
                             break;
                         case 0.57:
                             $dagen = 4;
 
-                            $price = (($priceWeek * $whole) + ($priceDay * $dagen)) / 100;
-                            $priceTotal = ((($priceWeek * $whole) + ($priceDay * $dagen)) / 100) * $pAmount;
+                            $price = (($priceWeek * $week) + ($priceDay * $dagen)) / 100;
+                            $priceTotal = ((($priceWeek * $week) + ($priceDay * $dagen)) / 100) * $pAmount;
                             break;
                         case 0.71:
                             $dagen = 5;
 
-                            $price = (($priceWeek * $whole) + ($priceDay * $dagen)) / 100;
-                            $priceTotal = ((($priceWeek * $whole) + ($priceDay * $dagen)) / 100) * $pAmount;
+                            $price = (($priceWeek * $week) + ($priceDay * $dagen)) / 100;
+                            $priceTotal = ((($priceWeek * $week) + ($priceDay * $dagen)) / 100) * $pAmount;
                             break;
                         case 0.86:
                             $dagen = 6;
 
-                            $price = (($priceWeek * $whole) + ($priceDay * $dagen)) / 100;
-                            $priceTotal = ((($priceWeek * $whole) + ($priceDay * $dagen)) / 100) * $pAmount;
+                            $price = (($priceWeek * $week) + ($priceDay * $dagen)) / 100;
+                            $priceTotal = ((($priceWeek * $week) + ($priceDay * $dagen)) / 100) * $pAmount;
                             break;
                     }
                     //stopt het product in de cart session
@@ -169,7 +169,7 @@ $products = $stmt->fetch();
                     echo "<script type='text/javascript'>alert('$message');</script>";
                     $category = $products['artikel_categorieID'];
 
-                    $_SESSION['cart'][$pId] = Array('productId' => $pId, 'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => $pStartDate, 'pEndDate' => $pEndDate, 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount, 'artikel_categorieID' => $category);
+                    $_SESSION['cart'][$pId] = Array('productId' => $pId, 'pImage' => $pImage, 'pName' => $pName, 'dagen' => $dagen, 'week' => $week, 'pStartDate' => $pStartDate, 'pEndDate' => $pEndDate, 'price' => $price, 'priceWeek' => $priceWeek, 'priceDay' => $priceDay, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount, 'artikel_categorieID' => $category);
                 }
             } elseif ($_POST["amount"] === 0 || $_POST["amount"] < 1) {
                     $message = 'U moet een aantal invullen';

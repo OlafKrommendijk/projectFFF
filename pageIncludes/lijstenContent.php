@@ -52,7 +52,6 @@ if (isset($_POST['submit'])){
         echo "<script>window.location = 'chauffeurLijst.php?id=3';</script>";
     }
 
-
     if ($_POST['select'] === 'factuur'){
         echo "<script>window.location = 'factuur.php';</script>";
     }

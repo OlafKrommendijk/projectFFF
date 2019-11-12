@@ -16,6 +16,7 @@
                 echo '<div class="productAfbeelding"><img src="' . $items['pImage'] . '" alt="Productafbeelding"></div><pre class="tab">' . '' . $items['pName'] .  '    ' . $items['pStartDate'] . '    ' . $items['pEndDate'] . '   €' . $items['price'] . '     €' .$items['priceTotal']. '     </pre>';
                 echo '<form method="POST"><input type="number" onchange="this.form.submit()" name="nieuwAantal" value="'.$items['pAmount'].'"><input type="hidden" name="submitAantal" value="'.$pId.'"></form>';
                 echo '<form class="verwijder" method="POST"><input class="hidden" type="hidden" name="productId" value="'.$items['productId'].'"><input type="submit" name="deleteProduct" value="Verwijder"></form>';
+
                 echo '</div>';
             }
         }else{
@@ -53,6 +54,15 @@ if (isset($_POST["submitAantal"])) {
     $id = $_POST["submitAantal"];
     $nieuwAantal = $_POST["nieuwAantal"];
 
+    $pCategory = $_SESSION['cart'][$id]['artikel_categorieID'];
+    $price = $_SESSION['cart'][$id]['price'];
+
+    $week = $_SESSION['cart'][$id]['week'];
+    $dagen = $_SESSION['cart'][$id]['dagen'];
+    $priceWeek = $_SESSION['cart'][$id]['priceWeek'];
+    $priceDay = $_SESSION['cart'][$id]['priceDay'];
+    $priceTotal = $_SESSION['cart'][$id]['priceTotal'];
+
     if ($nieuwAantal <= 0) {
         echo '<script language="javascript">';
         echo 'alert("Voer een ander aantal in")';
@@ -60,10 +70,21 @@ if (isset($_POST["submitAantal"])) {
     } else {
         //    Zet nieuwe aantal in array
         $_SESSION['cart'][$id]['pAmount'] = $nieuwAantal;
-//    Herladen pagina
-        echo "<script>window.location = 'shoppingCart.php';</script>";
-    }
 
+        if ($pCategory == 1){
+            $newPriceTotal = $price * $nieuwAantal;
+            $_SESSION['cart'][$id]['priceTotal'] = $newPriceTotal;
+            //    Herladen pagina
+            echo "<script>window.location = 'shoppingCart.php';</script>";
+            exit;
+        }else {
+            $newPriceTotal = ((($priceWeek * $week) + ($priceDay * $dagen)) / 100) * $nieuwAantal;
+            $_SESSION['cart'][$id]['priceTotal'] = $newPriceTotal;
+            //    Herladen pagina
+            echo "<script>window.location = 'shoppingCart.php';</script>";
+            exit;
+        }
+    }
 }
 
 if (isset($_POST['submit'])) {

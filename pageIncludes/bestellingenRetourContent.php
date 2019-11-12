@@ -36,9 +36,6 @@ if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1 ){
         else {
             echo 'Betaald <input type="checkbox" checked name="checked" value="checked" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order["ordersID"].'"><input type="hidden" name="test" value="checked">';
         }
-        echo '<form method="POST" enctype="multipart/form-data" action="../factuur.php"><input type="hidden" name="orderID" value="'.$order['ordersID'].'"><input type="hidden" name="submit_download" value="true"><input class="button" type="submit" name="submit" value="Download" /></form>';
-
-
         echo '</form></div>';
         echo '</div>';
         echo '</pre></div>';

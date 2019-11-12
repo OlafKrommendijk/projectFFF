@@ -1,246 +1,302 @@
-<?php
+<!doctype html>
+<html>
+<div id="source-html">
+    <head>
+        <meta charset="utf-8">
+        <title>Factuur voor FFF</title>
 
-$waarde = htmlspecialchars($_POST["orderId"]);
+        <style>
+            .invoice-box {
+                max-width: 800px;
+                margin: auto;
+                padding: 30px;
+                border: 1px solid #eee;
+                box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+                font-size: 16px;
+                line-height: 24px;
+                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                color: #555;
+            }
 
+            .invoice-box table {
+                width: 100%;
+                line-height: inherit;
+                text-align: left;
+            }
 
-//  haalt gegevens van DB op ----------------------------------------------------------->
-$query = "SELECT * FROM ((orders INNER JOIN klant ON klantID = orders_KlantID) INNER JOIN address ON addressID = orders_addressID) WHERE ordersID = '$waarde'";
-$stmt = $db->prepare($query);
-$stmt->execute(array($waarde));
-$orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            .invoice-box table td {
+                padding: 5px;
+                vertical-align: top;
+            }
 
+            .invoice-box table tr td:nth-child(2) {
+                text-align: left;
+            }
 
-header("Content-type: application/vnd.ms-word");
+            .invoice-box table tr.top table td {
+                padding-bottom: 20px;
+            }
 
-header("Content-Type: application/force-download");
-header("Content-Type: application/octet-stream");
-header("Content-Type: application/download");
+            .invoice-box table tr.top table td.title {
+                font-size: 45px;
+                line-height: 45px;
+                color: #333;
+            }
 
+            .invoice-box table tr.information table td {
+                padding-bottom: 40px;
+            }
 
-//  loopt door de orders en geeft waardes mee ----------------------------------------------------------->
-foreach ($orders as $order) {
+            .invoice-box table tr.heading td {
+                background: #eee;
+                border-bottom: 1px solid #ddd;
+                font-weight: bold;
+            }
 
-    $naam =  $order["Naam"];
-    $email = $order["Email"];
-    $postcode = $order["Postcode"];
-    $adres = $order["Adres"];
-    $huisnr = $order["Huisnummer"];
-    $id = $order["orders_ID"];
-    $tel = $order["Telefoonnummer"];
-    $bestDatum = $order["OrderDatum"];
-    $korting = $order["Korting"];
+            .invoice-box table tr.details td {
+                padding-bottom: 20px;
+            }
 
-}
-header("Content-Disposition: attachment; Filename=Factuur_nr_$id.doc");
+            .invoice-box table tr.item td {
+                border-bottom: 1px solid #eee;
+            }
 
+            .invoice-box table tr.item.last td {
+                border-bottom: none;
+            }
 
-$date = new DateTime($bestDatum);
-$date->add(new DateInterval('P1D')); // P1D means a period of 1 day
-$Date2 = $date->format('d-m-Y');
+            .invoice-box table tr.total td:nth-child(2) {
+                border-top: 2px solid #eee;
+                font-weight: bold;
+            }
 
+            @media only screen and (max-width: 600px) {
+                .invoice-box table tr.top table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
 
+                .invoice-box table tr.information table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+            }
 
-$origDate = $bestDatum;
+            /** RTL **/
+            .rtl {
+                direction: rtl;
+                font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            }
 
-$newDate = date("d-m-Y", strtotime($origDate));
+            .rtl table {
+                text-align: right;
+            }
 
-?>
+            .rtl table tr td:nth-child(2) {
+                text-align: left;
+            }
 
+            .right{
+                float:right;
+            }
 
-
-
-
-<b><p style="text-align: center">Factuur</p></b>
-<p>Factuur nummer: <?php echo $id ;?></p>
-
-
-<!--table voor klant en bedrijf gegevens  ----------------------------------------------------------->
-<table style="width:100%">
-    <tr>
-        <td width="50%"><?php echo $postcode ;?></td>
-        <td align="right">1234AA</td>
-    </tr>
-    <tr>
-        <td><?php echo $adres . " " . $huisnr ; ?></td>
-        <td align="right">Laan van de laan 13</td>
-    </tr>
-    <tr>
-        <td><?php echo $email ; ?>  </td>
-        <td align="right">info@fff.nl</td>
-    </tr>
-    <tr>
-        <td><?php echo $tel ; ?>  </td>
-        <td align="right">0312345678</td>
-    </tr>
-</table>
-
-<!--table voor bezorg gegevens  ----------------------------------------------------------->
-<style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        padding: 5px;
-        align-content: center;
-    }
-</style>
-
-<table style="width:100%;">
-    <tr>
-        <td width="33%">Bestel adres: <?php echo $adres . " " . $huisnr ; ?></td>
-        <td width="33%">Bestel datum: <?php  echo $newDate; ?></td>
-        <td width="33%">Bezorg datum: <?php  echo $Date2; ?></td>
-    </tr>
-</table>
-
-<!--table voor bestelde artikelen -->
-<table style="width:100%;">
-    <thead>
-    <th>Product Naam</th>
-    <th>Omschrijving</th>
-    <th>Verkoopwijze</th>
-    <th>Artikel nummer</th>
-    <th>Aantal/dagen</th>
-    <th>Bedrag</th>
-    <th>Totaal</th>
-    </thead>
-    <tbody>
+        </style>
+    </head>
     <?php
-    $totaalPrijsAlles = 0;
-    $setSql = "SELECT * FROM (((orderregel 
-                INNER JOIN orders ON orders.orders_ID = orderregel.Order_ID) 
-               INNER JOIN artikel ON artikel.ID = orderregel.Artikel_ID)
-               INNER JOIN verkoopwijze ON verkoopwijze.Verkoopwijze_ID = artikel.Verkoopwijze_ID)
-               WHERE `Order_ID` = '$id'";
-    $stmt = $db->prepare($setSql);
-    $stmt->execute(array($waarde));
-    $artikelen = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //vandaag de dag
+    $dateNow = date('Y-m-d');
 
-    foreach ($artikelen as $artikel) {
+    //    Haalt alle gegevens op van de orders van vandaag
+    $query = "SELECT * FROM orders INNER JOIN orderregel ON orderRegel_OrderID = ordersID INNER JOIN klant ON orders_klantID = klantID INNER JOIN fff.address ON orders_addressID = addressID WHERE retourDatum = '$dateNow' OR bestelDatum = '$dateNow' GROUP BY ordersID ORDER BY ordersID ASC;";
+    $stmt = $db->prepare($query);
+    $stmt->execute(array());
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//      enkele prijs van een betaal product -------------------------------------------->
-        $ordRegelPrijs = $artikel["Price"];
-        $euro = $ordRegelPrijs / 60;
-        $totaalRond = number_format($euro, 2, '.', ',');
-        $artikelPrijsKomma = str_replace('.', ',', $totaalRond);
-//      totaal prijs per product ----------------------------------------------->
-        $prijs = $artikel["Price"] / 60;
-        $afgerond = number_format($prijs, 2, '.', ',');
-        $komma2 = str_replace('.', ',', $afgerond);
-        $prijs2 = $afgerond * $artikel["Aantal"];
-        $afgerond2 = number_format($prijs2, 2, '.', ',');
-        $komma = str_replace('.', ',', $afgerond2);
-//      totaal prijs van alles -------------------------------------->
-        $totaalPrijs = $artikel["totaalPrijs"];
-        $kommaPrijs = str_replace('.', ',', $totaalPrijs);
-
-        if ($artikel["Verkoopwijze_Naam"] === 'Huur') {
-            $datetime1 = new DateTime($artikel["BeginDatum"]);
-            $datetime2 = new DateTime($artikel["EindDatum"]);
-            $interval = $datetime1->diff($datetime2);
-            $dagen = $interval->format('%a');
-            $prijs = $artikel["Price"] / 60;
-
-
-            $day   = 24 * 3600;
-            $from  = strtotime($artikel["BeginDatum"]);
-            $to    = strtotime($artikel["EindDatum"]) + $day;
-            $diff  = abs($to - $from);
-            $weeks = floor($diff / $day / 7);
-            $days  = $diff / $day - $weeks * 7;
-            $dagen = $days - 1;
-            $out   = array();
-
-            if ($weeks) {
-                $out[] = "$weeks Week" . ($weeks > 1 ? 'en' : '');
-
-                $afgerond = number_format($prijs, 2, '.', ',');
-                $weekPrijs = $afgerond * 6;
-                $totaalWeekPrijs = $weekPrijs * $weeks;
-            }
-
-            if ($dagen) {
-                $out[] = "$dagen dag" . ($dagen > 1 ? 'en' : '');
-                $totaalDagPrijs = $prijs * $dagen;
-            }
-
-            if (!empty($weeks) && !empty($dagen)) {
-                $totaal = $totaalDagPrijs + $totaalWeekPrijs;
-                $afgerondWD = number_format($totaal, 2, '.', ',');
-                $komma = str_replace('.', ',', $afgerondWD);
-            } elseif (!empty($weeks) && empty($dagen)) {
-                $totaal = $totaalWeekPrijs;
-                $komma = str_replace('.', ',', $totaal);
-            } elseif (empty($weeks) &&!empty($dagen)) {
-                $totaal = $totaalDagPrijs;
-                $afgerondWD = number_format($totaal, 2, '.', ',');
-                $komma = str_replace('.', ',', $afgerondWD);
-            }
-            $totaalPrijsAlles += $afgerondWD;
-        } else {
-            $prijs = $artikel["Price"] / 60;
-            $afgerond = number_format($prijs, 2, '.', ',');
-            $komma2 = str_replace('.', ',', $afgerond);
-            $prijs2 = $afgerond * $artikel["Aantal"];
-            $afgerond2 = number_format($prijs2, 2, '.', ',');
-            $komma = str_replace('.', ',', $afgerond2);
-
-            $totaalPrijsAlles += $prijs2;
-        }
-
+    foreach ($result as $key => $value) {
+//Haalt alle orderregels en artikel gegevens op
+        $query = "SELECT * FROM orderregel INNER JOIN product ON orderregel_artikelID = productID WHERE orderregel_orderID =" . $value["ordersID"];
+        $stmt = $db->prepare($query);
+        $stmt->execute(array());
+        $orderregels = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
-        <tr>
-            <td><?php echo $artikel["Naam"] ;?></td>
-            <td><?php echo substr($artikel["Omschrijving"],0, 10); ?> ...</td>
-            <td><?php echo $artikel["Verkoopwijze_Naam"] ;?></td>
-            <td><?php echo $artikel["ID"] ;?></td>
-            <td><?php if ($artikel["Verkoopwijze_Naam"] === 'Huur'){echo implode(' en ', $out);} else { echo $artikel["Aantal"];}?></td>
-            <td><?php echo $artikelPrijsKomma ;?></td>
-            <td><?php echo $komma;?></td>
-        </tr>
-        <?php
+        <body>
+        <br style="page-break-before: always">
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="top">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td class="title">
+                                </td>
+                                <td>
+                                    Nummer van factuur: <?php echo $value['ordersID'] ?><br>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    <h3>Verstuurd door</h3>
+                                    Freds FeestFabriek.<br>
+                                    Nieuwe Straat 15<br>
+                                    7777HH Hardenberg
+                                </td>
+
+                                <td class="right">
+                                    <h3>Klant Gegevens</h3>
+                                    <?php echo $value['naam'] . ' ' . $value['achternaam'] ?><br>
+                                    <?php echo $value['straat'] . ' ' . $value['huisnummer'] ?><br>
+                                    <?php echo $value['postcode'] . ' ' . $value['woonplaats'] ?><br>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="heading">
+                    <td>
+                        Product
+                    </td>
+                    <td>
+                        Aantal
+                    </td>
+                    <td>
+                        Prijs
+                    </td>
+                    <td>
+                        Totaalprijs
+                    </td>
+                </tr>
+                <?php
+                $NieuweTotaalprijs = 0;
+                foreach ($orderregels as $regel) {
+// Berekent het aantal dagen
+                    $pStartDate = new DateTime($regel["bestelDatum"]);
+                    $pEndDate = new DateTime($regel["retourDatum"]);
+                    $interval = date_diff($pStartDate, $pEndDate);
+                    $days = $interval->format("%a");
+                    $weeks = round($days / 7, 2);
+                    $week = floor($weeks);
+                    $dagenComma = round($weeks - $week, 2);
+//Hiermee word gekeken hoeveel dagen er zijn
+                    switch ($dagenComma) {
+                        case 0.14:
+                            $huurdagen = 1;
+                            break;
+                        case 0.29:
+                            $huurdagen = 2;
+                            break;
+                        case 0.43:
+                            $huurdagen = 3;
+                            break;
+                        case 0.57:
+                            $huurdagen = 4;
+                            break;
+                        case 0.71:
+                            $huurdagen = 5;
+                            break;
+                        case 0.86:
+                            $huurdagen = 6;
+                            break;
+                        case 0:
+                        default:
+                            $huurdagen = 0;
+                            break;
+                    }
+                    ?>
+                    <tr class="item">
+                        <td>
+                            <?php echo $regel['naam'] ?>
+                        </td>
+                        <td>
+                            <?php echo $regel['aantal'] ?>
+                        </td>
+                        <td>
+                            <?php echo  $regel['prijs'] ?>
+                        </td>
+
+                        <td>
+                            <?php
+                            //                            Berekent de totaalprijs
+                            if ($regel['artikel_categorieID'] == 2) {
+                                $totaalprijs = (float)((($week * $regel["prijsWeek"]) + ($huurdagen * $regel["prijsDag"])) * $regel["aantal"]);
+
+                                echo number_format(($totaalprijs /100), 2, '.', ',');
+
+                                $NieuweTotaalprijs += $totaalprijs;
+                            } else {
+                                $totaalprijs = (float)($regel['prijs'] * $regel["aantal"]);
+
+                                echo number_format(($totaalprijs /100), 2, '.', ',');
+
+                                $totaalprijs += $totaalprijs;
+                            } ?>
+                        </td>
+                    </tr>
+                <?php }
+                if ($value['bezorgen'] == 1){
+                ?>
+                <tr>
+                    <td>
+                        <strong>Bezorgen</strong>
+                    </td>
+                    <td>
+                        <strong>50</strong>
+                    </td>
+                </tr>
+                <tr class="total">
+                    <?php } ?>
+                    <td>
+                    </td>
+                    <td>
+                        <!--                        Berekening met korting en bezorgkosten bij de totaalprijs op-->
+                        Totaal: <?php
+                        $korting = (100 - $value['korting']);
+                        if ($value['bezorgen'] == 1) {
+                            $bezorgen = 50;
+                        } else {
+                            $bezorgen = 0;
+                        }
+                        $total = (($NieuweTotaalprijs / 100 * $korting) + $bezorgen );
+                        echo number_format(($total /100), 2, '.', ',');
+                        ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </body>
+    <?php } ?>
+</div>
+</html>
+<script>
+    window.onload = function () {
+        exportHTML();
+        location.href = "lijsten.php"
+    };
+
+    //Functie om de pagina naar word te zetten
+    function exportHTML() {
+        var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+            "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+            "xmlns='http://www.w3.org/TR/REC-html40'>" +
+            "<head><meta charset='utf-8'></head><body>";
+        var footer = "</body></html>";
+        var sourceHTML = header + document.getElementById("source-html").innerHTML + footer;
+
+        var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+        var fileDownload = document.createElement("a");
+        document.body.appendChild(fileDownload);
+        fileDownload.href = source;
+        fileDownload.download = 'document.doc';
+        fileDownload.click();
+        document.body.removeChild(fileDownload);
     }
-    ?>
-    </tbody>
-</table>
-<br>
-<style>
-    table, th, td {
-        border: 1px solid White;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        padding: 5px;
-        align-content: center;
-    }
-</style>
-<table style="width:100%;">
-    <?php $BedragZonderKorting = str_replace('.', ',', $totaalPrijsAlles); ?>
-    <tr>
-        <td width="33%"></td>
-        <td width="33%"></td>
-        <td width="33%"><u>Subtotaal: <?php echo  $BedragZonderKorting ;?></u></td>
-    </tr>
-    <tr>
-        <td width="33%"></td>
-        <td width="33%"></td>
-        <td width="33%"><u>Korting: <?php echo  $korting ;?> %</u></td>
-    </tr>
-    <?php
-    $artKorting = $totaalPrijsAlles / 100 * $korting;
-    $uiteindelijkeKorting = $totaalPrijsAlles - $artKorting;
-    $artRond = number_format($uiteindelijkeKorting, 2, '.', ',');
-    $totaalMetKorting = str_replace('.', ',', $artRond);
-    ?>
-    <tr>
-        <td width="33%"></td>
-        <td width="33%"></td>
-        <td width="33%"><u>Totaal bedrag: <?php echo  $totaalMetKorting ;?></u></td>
-    </tr>
-</table>
-
-
-
+</script>
