@@ -113,8 +113,8 @@ $products = $stmt->fetch();
                     $dagen = 0;
 
                     //rekent het aantal weken en dagen uit
-                    $interval = ($pStartDateTime->diff($pEndDateTime));
-                    $days = $days = $interval->format('$a');
+                    $interval = date_diff($pStartDateTime, $pEndDateTime);
+                    $days = $interval->format("%a");
                     $weeks = round($days / 7, 2);
                     $whole = floor($weeks);
                     $dagenComma = round($weeks - $whole, 2);

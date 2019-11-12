@@ -1,7 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Olaf
- * Date: 12-11-2019
- * Time: 14:17
- */
+//Laad de benodigde bestanden in
+
+include_once('header.php');
+
+//Kijktt of de bezoeker is ingelogd.
+if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1){
+    include_once ('lijst/chauffeur.php');
+    include_once('footer.php');
+} else {
+    echo "<script>alert('U moet ingelogd zijn om deze pagina te bekijken.'); location.href='index.php';</script>";
+}

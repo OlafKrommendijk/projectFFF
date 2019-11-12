@@ -29,7 +29,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <tbody>
         <tr>
             <td><?php echo $order["ordersID"] ?></td>
-            <td><?php echo strtoupper($order["naam"][0]) . '.' . ucfirst($order["achternaam"]) ?></td>
+            <td><?php echo strtoupper($order["naam"][0]) . ' ' .$order["tussenvoegsel"]. ' ' . ucfirst($order["achternaam"]) ?></td>
             <td> <?php echo $order["totaalprijs"] ?></td>
         </tr>
         </tbody>

@@ -41,6 +41,18 @@ if (isset($_POST['submit'])){
         echo "<script>window.location = 'medewerkerLijst.php';</script>";
     }
 
+    if ($_POST['select'] === 'chaff1'){
+        echo "<script>window.location = 'chauffeurLijst.php?id=1';</script>";
+    }
+    if ($_POST['select'] === 'chaff2'){
+        echo "<script>window.location = 'chauffeurLijst.php?id=2';</script>";
+    }
+
+    if ($_POST['select'] === 'chaff3'){
+        echo "<script>window.location = 'chauffeurLijst.php?id=3';</script>";
+    }
+
+
     if ($_POST['select'] === 'factuur'){
         echo "<script>window.location = 'factuur.php';</script>";
     }
