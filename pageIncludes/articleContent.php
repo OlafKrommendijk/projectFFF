@@ -86,22 +86,28 @@ $products = $stmt->fetch();
 
                     exit();
                 } else {
-                    $_SESSION['cart'][$pId] = Array();
-
                     $pStartDate = $_POST["startDate"];
                     $pEndDate = $_POST["endDate"];
                     $dateNow = new DateTime();
                     $pStartDateTime = new DateTime($pStartDate);
                     $pEndDateTime = new DateTime ($pEndDate);
 
+                    $now = date('Y-m-d');
+                    $start = date($_POST["startDate"]);
+                    $end = date($_POST["endDate"]);
+
                 }
                 if($pEndDate < $pStartDate){
                     $message = 'De einddatum moet zich bevinden voor de startdatum';
                     echo "<script type='text/javascript'>alert('$message');</script>";
-//                }elseif($pStartDate < new DateTime()){
-//                    $message = 'De startdatum moet vandaag of na vandaag zijn ';
-//                    echo "<script type='text/javascript'>alert('$message');</script>";
+
+                }elseif($start < $now){
+                    $message = 'De startdatum moet vandaag of na vandaag zijn ';
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+
                 }else {
+                    $_SESSION['cart'][$pId] = Array();
+
                     $pAmount = htmlspecialchars($_POST["amount"]);
                     $pName = $products['naam'];
                     $pImage = $products['afbeelding'];
