@@ -39,7 +39,7 @@ if (isset($_POST["submit"])) {
             $hash = $result["wachtwoord"];
 
             //Als het wachtwoord goed is wordt de session geupdate en wordt hij doorgestuurd naar de pagina voor medewerkers
-            if (password_verify($password, $hash)) {
+            if (password_verify($password, $hash) && $email === 'medewerker1@gmail.com') {
                 $_SESSION["medewerkerID"] = 1;
                 $_SESSION["email"] = $result["email"];
                 $_SESSION["admin"] = 1;
@@ -49,6 +49,13 @@ if (isset($_POST["submit"])) {
                 exit;
 
                 //error message als de inloggegevens verkeerd zijn ingevuld.
+            }elseif (password_verify($password, $hash)){
+                $_SESSION["email"] = $result["email"];
+                $_SESSION["admin"] = 1;
+                $_SESSION["STATUS"] = 2;
+
+                header("Location: http://localhost/projectFFF/medewerkerPagina.php");
+                exit;
             } else {
                 $error .= "Inloggegevens ongeldig. <br>";
             }

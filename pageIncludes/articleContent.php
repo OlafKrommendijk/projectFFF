@@ -40,6 +40,7 @@ $products = $stmt->fetch();
             echo '<input class="amount" type="number" name="amount"> Aantal<br>';
             echo '<input type="submit" name="submit" id="submit" value="Reserveer!">';
         }else {
+            echo '<input class="startDate" type="date" name="startDate"> Ophaaldatum<br>';
             echo '<input class="amount" type="number" name="amount"> Aantal<br>';
             echo '<input type="submit" name="submit" id="submit" value="Koop!">';
         }
@@ -185,10 +186,11 @@ $products = $stmt->fetch();
                 $priceWeek = $products['prijsWeek'];
                 $category = $products['artikel_categorieID'];
                 $priceTotal = ($price) * $pAmount;
+                $pStartDate = $_POST["startDate"];
 
                 $message = 'Product gereserveerd';
                 echo "<script type='text/javascript'>alert('$message');</script>";
-                $_SESSION['cart'][$pId] = Array('productId' => $pId,'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => " Koopproduct", 'pEndDate' => " ", 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount, 'artikel_categorieID' => $category);
+                $_SESSION['cart'][$pId] = Array('productId' => $pId,'pImage' => $pImage, 'pName' => $pName, 'pStartDate' => "$pStartDate", 'pEndDate' => "Koopproduct", 'price' => $price, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount, 'artikel_categorieID' => $category);
                 }
         }
 

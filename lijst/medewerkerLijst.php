@@ -5,8 +5,6 @@ $stmt = $db->prepare($query);
 $stmt->execute(array());
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-var_dump($query);
-
 ?>
 <a id="dlink" style="display:none;"></a>
 <input type="button" onclick="tableToExcel('testTable', 'W3C Example Table', '<?php echo $dateNow ?>Medewerker.xls')"
