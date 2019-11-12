@@ -108,19 +108,20 @@
     //vandaag de dag
     $dateNow = date('Y-m-d');
 
-    //    Haalt alle gegevens op van de orders van vandaag
+    //haalt van vandaag alle orders op
     $query = "SELECT * FROM orders INNER JOIN orderregel ON orderRegel_OrderID = ordersID INNER JOIN klant ON orders_klantID = klantID INNER JOIN fff.address ON orders_addressID = addressID WHERE retourDatum = '$dateNow' OR bestelDatum = '$dateNow' GROUP BY ordersID ORDER BY ordersID ASC;";
     $stmt = $db->prepare($query);
     $stmt->execute(array());
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($result as $key => $value) {
-//Haalt alle orderregels en artikel gegevens op
+    //haalt van alle orders van vandaag de producten op
         $query = "SELECT * FROM orderregel INNER JOIN product ON orderregel_artikelID = productID WHERE orderregel_orderID =" . $value["ordersID"];
         $stmt = $db->prepare($query);
         $stmt->execute(array());
         $orderregels = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
+<!--        zet de gegevens in de factuur-->
         <body>
         <br style="page-break-before: always">
         <div class="invoice-box">
@@ -178,7 +179,7 @@
                 <?php
                 $NieuweTotaalprijs = 0;
                 foreach ($orderregels as $regel) {
-// Berekent het aantal dagen
+                // Berekent voor elk product hoelang hij gehuurd is
                     $pStartDate = new DateTime($regel["bestelDatum"]);
                     $pEndDate = new DateTime($regel["retourDatum"]);
                     $interval = date_diff($pStartDate, $pEndDate);
@@ -186,29 +187,29 @@
                     $weeks = round($days / 7, 2);
                     $week = floor($weeks);
                     $dagenComma = round($weeks - $week, 2);
-//Hiermee word gekeken hoeveel dagen er zijn
+
                     switch ($dagenComma) {
                         case 0.14:
-                            $huurdagen = 1;
+                            $dagen = 1;
                             break;
                         case 0.29:
-                            $huurdagen = 2;
+                            $dagen = 2;
                             break;
                         case 0.43:
-                            $huurdagen = 3;
+                            $dagen = 3;
                             break;
                         case 0.57:
-                            $huurdagen = 4;
+                            $dagen = 4;
                             break;
                         case 0.71:
-                            $huurdagen = 5;
+                            $dagen = 5;
                             break;
                         case 0.86:
-                            $huurdagen = 6;
+                            $dagen = 6;
                             break;
                         case 0:
                         default:
-                            $huurdagen = 0;
+                        $dagen = 0;
                             break;
                     }
                     ?>
@@ -225,16 +226,17 @@
 
                         <td>
                             <?php
-                            //                            Berekent de totaalprijs
+                            //Controleert of het product een koopproduct is en berekent de prijs
                             if ($regel['artikel_categorieID'] == 2) {
-                                $totaalprijs = (float)((($week * $regel["prijsWeek"]) + ($huurdagen * $regel["prijsDag"])) * $regel["aantal"]);
+                                $totaalprijs = ((($week * $regel["prijsWeek"]) + ($dagen * $regel["prijsDag"])) * $regel["aantal"]);
 
+                                //laat een normaal comma getal zien als prijs
                                 echo number_format(($totaalprijs /100), 2, '.', ',');
 
                                 $NieuweTotaalprijs += $totaalprijs;
                             } else {
-                                $totaalprijs = (float)($regel['prijs'] * $regel["aantal"]);
-
+                                $totaalprijs = ($regel['prijs'] * $regel["aantal"]);
+//laat een normaal comma getal zien als prijs
                                 echo number_format(($totaalprijs /100), 2, '.', ',');
 
                                 $totaalprijs += $totaalprijs;
@@ -242,6 +244,7 @@
                         </td>
                     </tr>
                 <?php }
+                //kijkt of het product bezorgt moet worden
                 if ($value['bezorgen'] == 1){
                 ?>
                 <tr>
@@ -257,7 +260,7 @@
                     <td>
                     </td>
                     <td>
-                        <!--                        Berekening met korting en bezorgkosten bij de totaalprijs op-->
+<!--                        Berekend het totaalbedrag en haalt eventueele korting er af-->
                         Totaal: <?php
                         $korting = (100 - $value['korting']);
                         if ($value['bezorgen'] == 1) {

@@ -10,6 +10,7 @@
 <div class="page-wrapper">
     <div class="shoppingcartProducts">
         <?php
+        //werkt met een foreach de shoppingcart door en laat elk product in de cart zien, als die er niet is laat hij een andere melding zien.
         if (isset($_SESSION['cart'] )) {
             foreach ($_SESSION['cart'] as $pId => $items) {
                 echo '<div class="product">';
@@ -41,7 +42,7 @@
 </html>
 
 <?php
-
+//als er op de delete knop wordt gedrukt wordt het product uit de winkelwagen gegooid
 if (isset($_POST['deleteProduct'])) {
     $pId = htmlspecialchars($_POST['productId']);
 
@@ -50,6 +51,7 @@ if (isset($_POST['deleteProduct'])) {
     header('Refresh:0');
 }
 
+//controleert of er nieuw aantal is ingevuld als dit het geval update hij dit in de session samen met de nieuwe prijs en refreshed de page zodat alles weer juist staat
 if (isset($_POST["submitAantal"])) {
     $id = $_POST["submitAantal"];
     $nieuwAantal = $_POST["nieuwAantal"];
@@ -71,6 +73,7 @@ if (isset($_POST["submitAantal"])) {
         //    Zet nieuwe aantal in array
         $_SESSION['cart'][$id]['pAmount'] = $nieuwAantal;
 
+        //controleert of het n koop of huurproduct is
         if ($pCategory == 1){
             $newPriceTotal = $price * $nieuwAantal;
             $_SESSION['cart'][$id]['priceTotal'] = $newPriceTotal;
@@ -87,6 +90,7 @@ if (isset($_POST["submitAantal"])) {
     }
 }
 
+//als er op submit wordt gedrukt worden alle velden gecontroleerd
 if (isset($_POST['submit'])) {
     $customerEmail = htmlspecialchars($_POST['email']);
     $customerFirstname = htmlspecialchars($_POST['firstname']);
@@ -98,14 +102,17 @@ if (isset($_POST['submit'])) {
     $customerPostal = substr(str_replace(' ', '', strtoupper($postal)), 0, 6);
     $customerCity = htmlspecialchars($_POST['city']);
 
+    //checkt de postcode
     if(!preg_match('/\d\d\d\d[A-Z]{2}/', $customerPostal)){
         $message = 'Voer uw postcode juist in';
         echo "<script type='text/javascript'>alert('$message');</script>";
 
+        //controleert of alles is ingevuld
     }else if(empty($customerEmail) || empty($customerFirstname) || empty($customerLastname) || empty($customerStreet) || empty($customerNumber) || empty($customerPostal) || empty($customerCity)){
         $message = 'Voer alle velden in';
         echo "<script type='text/javascript'>alert('$message');</script>";
     }else if (filter_var($customerEmail, FILTER_VALIDATE_EMAIL)) {
+        //selecteert een met een query het juiste email
             $checkedEmail = filter_var($customerEmail, FILTER_VALIDATE_EMAIL);
             $sql = "SELECT email FROM klant WHERE email = :email";
             $stmt = $db->prepare($sql);
@@ -121,11 +128,13 @@ if (isset($_POST['submit'])) {
                 $klantId = implode($result);
 
                 if($query){
+                    //haalt het address op
                     $query = "SELECT straat, huisnummer, postcode, woonplaats FROM address WHERE address_klantID = '$klantId'";
                     $stmt = $db->prepare($query);
                     $stmt->execute(['email' => $customerEmail]);
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+                    //als het adres niet het zelfde is als het adres dat is ingevuld wordt er een nieuw adres in de DB gezet
                     if($result['straat'] !== $customerStreet || $result['huisnummer'] !== $customerNumber || $result['woonplaats'] !== $customerCity || $result['postcode'] !== $customerPostal){
                         $query = "INSERT INTO address (address_klantID, straat, huisnummer, postcode, woonplaats)  VALUES ('$klantId', '$customerStreet', '$customerNumber', '$customerPostal', '$customerCity')";
                         $db->exec($query);
@@ -134,6 +143,7 @@ if (isset($_POST['submit'])) {
 
 
             }else {
+                //als de gebruiker niet bestaat wordt hij in de DB gezet
                 $query = "INSERT INTO klant (naam, tussenvoegsel, achternaam, email)  VALUES ('$customerFirstname', '$customerBetween', '$customerLastname', '$customerEmail')";
                 $db->exec($query);
 
@@ -144,18 +154,20 @@ if (isset($_POST['submit'])) {
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
                     $klantId = implode($result);
 
+                    //zet het adres van de gebruiker in de DB
                     $query = "INSERT INTO address (address_klantID, straat, huisnummer, postcode, woonplaats)  VALUES ('$klantId', '$customerStreet', '$customerNumber', '$customerPostal', '$customerCity')";
                     $db->exec($query);
                 }
             }
 
-
+            //selecteert het juist adres
             $query = "SELECT addressID FROM address WHERE address_klantID = '$klantId' AND straat  = '$customerStreet' AND huisnummer = '$customerNumber' AND postcode = '$customerPostal' AND woonplaats = '$customerCity'";
             $stmt = $db->prepare($query);
             $stmt->execute([]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $addressID = $result['addressID'];
 
+            //controleert of de bezorgoptie is aangevinkt
             if ($query) {
                 if(isset($_POST['bezorgen'])){
                     $customerDeliver = $_POST['bezorgen'];
@@ -164,10 +176,12 @@ if (isset($_POST['submit'])) {
                     $customerDeliver = 0;
                     $totaalprijs = 0;
                 }
+                //update de query met de bezorgkosten
                 $query = "INSERT INTO orders (orders_klantID, orders_addressID, bezorgen)  VALUES ('$klantId', '$addressID', '$customerDeliver')";
                 $db->exec($query);
             }
 
+            //Zet elke product met foreach in de DB onder orderregels
             foreach ($_SESSION['cart'] as $pId => $items) {
                 $pId = $items['productId'];
                 $pAmount = $items['pAmount'];

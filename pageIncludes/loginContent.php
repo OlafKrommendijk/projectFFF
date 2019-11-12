@@ -48,7 +48,7 @@ if (isset($_POST["submit"])) {
                     header("Location: http://localhost/projectFFF/medewerkerPagina.php");
                     exit;
 
-                    //error message als de inloggegevens verkeerd zijn ingevuld.
+                    //Als de logingevens van een chauffeur zijn wordt hij ingelogd als chauffeur
                 }elseif ($email === 'chauffeur1@gmail.com' || $email === 'chauffeur2@gmail.com' || $email === 'chauffeur3@gmail.com'){
                     $_SESSION["admin"] = 1;
                     $_SESSION["STATUS"] = 2;

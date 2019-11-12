@@ -36,6 +36,7 @@
 
 <?php
 
+//Kijkt welke lijst er op moet worden gehaald en stuurt de gebruiker door
 if (isset($_POST['submit'])){
     if ($_POST['select'] === 'medewerker'){
         echo "<script>window.location = 'medewerkerLijst.php';</script>";

@@ -30,6 +30,7 @@ $products = $stmt->fetch();
 
         echo '<form method="post"><div class="reserveren">';
 
+        //Kijkt of het product in onderhoud zit
         if ($products['onderhoud'] == 1){
             echo '<p> Product zit in onderhoud. </p>';
         }
@@ -86,6 +87,7 @@ $products = $stmt->fetch();
 
                     exit();
                 } else {
+                    //maakt de juiste datum objecten aan
                     $pStartDate = $_POST["startDate"];
                     $pEndDate = $_POST["endDate"];
                     $dateNow = new DateTime();
@@ -97,15 +99,17 @@ $products = $stmt->fetch();
                     $end = date($_POST["endDate"]);
 
                 }
+                //controleert of de eind datum voor de startdatum is
                 if($pEndDate < $pStartDate){
                     $message = 'De einddatum moet zich bevinden voor de startdatum';
                     echo "<script type='text/javascript'>alert('$message');</script>";
-
+                //controleert de startdatum na vandaag is
                 }elseif($start < $now){
-                    $message = 'De startdatum moet vandaag of na vandaag zijn ';
+                    $message = 'De startdatum na vandaag zijn ';
                     echo "<script type='text/javascript'>alert('$message');</script>";
 
                 }else {
+                    //maakt de cart session aan
                     $_SESSION['cart'][$pId] = Array();
 
                     $pAmount = htmlspecialchars($_POST["amount"]);
@@ -177,12 +181,14 @@ $products = $stmt->fetch();
 
                     $_SESSION['cart'][$pId] = Array('productId' => $pId, 'pImage' => $pImage, 'pName' => $pName, 'dagen' => $dagen, 'week' => $week, 'pStartDate' => $pStartDate, 'pEndDate' => $pEndDate, 'price' => $price, 'priceWeek' => $priceWeek, 'priceDay' => $priceDay, 'priceTotal' => $priceTotal, 'pAmount' => $pAmount, 'artikel_categorieID' => $category);
                 }
+                //controleert of het aantal is ingevuld
             } elseif ($_POST["amount"] === 0 || $_POST["amount"] < 1) {
                     $message = 'U moet een aantal invullen';
                     echo "<script type='text/javascript'>alert('$message');</script>";
 
                     exit();
             }else {
+                //zet het koopproduct in de winkelmand
                 $pAmount = htmlspecialchars($_POST["amount"]);
 
                 $pName = $products['naam'];

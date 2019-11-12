@@ -7,6 +7,7 @@
 
 <div id="page-wrapper">
     <?php
+    //controleert of de persoon wel bevoegd is om dit te zien
     if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1) {
     ?>
     <div class="buttonBox">
@@ -20,13 +21,20 @@
 </html>
 
 <?php
+//checkt of er een medewerker in logt
 if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1 ){
+    //de dag van vandaag
     $dateNow = date('Y-m-d');
+
+    //query die alle orders van vandaag ophaalt
     $query = "SELECT * FROM orders INNER JOIN orderregel ON orderRegel_orderID = ordersID INNER JOIN klant ON orders_klantID = klantID  WHERE retourDatum = '$dateNow' AND bezorgen = 0 OR bestelDatum = '$dateNow' AND bezorgen = 0 GROUP BY ordersID;";
+
+    //prepared de query en voert hem uit
     $stmt = $db->prepare($query);
     $stmt->execute(array());
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    //Gaat met een foreach over alle orders en laat ze zien
     foreach ($result as $id => $order) {
         echo '<div class="order"><pre class="tab">';
         echo "Factuurnummer: " . $order['ordersID'] . "     Voornaam: " . $order['naam'] . "    Achternaam: " . $order['achternaam'];
@@ -40,14 +48,20 @@ if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1 ){
         echo '</div>';
         echo '</pre></div>';
     }
+    //controleert of er een chauffeur inlogt
 }else if ($_SESSION["STATUS"] === 2){
+    //de dag van vandaag
     $dateNow = date('Y-m-d');
+
+    //query die alle orders van vandaag ophaalt
     $query = "SELECT * FROM orders INNER JOIN orderregel ON orderRegel_orderID = ordersID INNER JOIN klant ON orders_klantID = klantID INNER JOIN address ON orders_addressID = addressID WHERE retourDatum = '$dateNow' AND bezorgen = 1 OR bestelDatum = '$dateNow' AND bezorgen = 1 GROUP BY postcode ASC;";
     $stmt = $db->prepare($query);
     $stmt->execute(array());
     $check = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //splits de query in 3en zodat elke chauffeur een deel heeft
     $result = array_chunk($check, ceil(count($check) / 3));
 
+    //controllert welke chauffeur inlogt
     if ($_SESSION["email"] === 'chauffeur1@gmail.com'){
         $result = $result[0];
     }elseif ($_SESSION["email"] === 'chauffeur2@gmail.com'){
@@ -56,6 +70,7 @@ if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1 ){
         $result = $result[2];
     }
 
+    //Gaat met een foreach over alle orders en laat ze zien
     foreach ($result as $id => $order) {
         echo '<div class="order"><pre class="tab">';
         echo "Factuurnummer: " . $order['ordersID'] . "     Voornaam: " . $order['naam'] . "    Achternaam: " . $order['achternaam'];
@@ -74,6 +89,7 @@ if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1 ){
     header("Location: http://localhost/projectFFF/index.php");
 }
 
+//Als er op de checkbox wordt gedrukt is het product betaald
 if (isset($_POST['unchecked'])){
     $orderID = $_POST['id'];
 

@@ -1,11 +1,17 @@
 <?php
+//Maakt de dag van vandaag aan als variable
 $dateNow = date('Y-m-d');
+
+//query die alle orders van vandaag ophaalt
 $query = "SELECT * FROM orders INNER JOIN orderregel ON orderRegel_orderID = ordersID INNER JOIN klant ON orders_klantID = klantID  WHERE retourDatum = '$dateNow' AND bezorgen = 0 OR bestelDatum = '$dateNow' AND bezorgen = 0;";
+
+//prepared de query en voert hem uit
 $stmt = $db->prepare($query);
 $stmt->execute(array());
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
+<!--Zet de juiste gegevens in de lijst-->
 <a id="dlink" style="display:none;"></a>
 <input type="button" onclick="tableToExcel('testTable', 'W3C Example Table', '<?php echo $dateNow ?>Medewerker.xls')"
        value="Export to Excel">
@@ -36,10 +42,12 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php } ?>
 </table>
 <script>
+    //Als de pagina laad, voert de functie zichzelf uit. Hierna wordt je doorgestuurd na de pagina voor de lijsten
     window.onload = function () {
         tableToExcel('testTable', 'W3C Example Table', '<?php echo $dateNow ?>Medewerker.xls');
         location.href = "./lijsten.php"
     };
+    //Via deze functie downloaden wij het excel bestand
     var tableToExcel = (function () {
         var uri = 'data:application/vnd.ms-excel;base64,',
             template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
