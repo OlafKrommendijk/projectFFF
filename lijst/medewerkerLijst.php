@@ -37,8 +37,8 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </table>
 <script>
     window.onload = function () {
-        tableToExcel('testTable', 'W3C Example Table', '<?php echo $dateNow ?>Medewerker.xls')
-        // location.href = "./lijsten.php"
+        tableToExcel('testTable', 'W3C Example Table', '<?php echo $dateNow ?>Medewerker.xls');
+        location.href = "./lijsten.php"
     };
     var tableToExcel = (function () {
         var uri = 'data:application/vnd.ms-excel;base64,',

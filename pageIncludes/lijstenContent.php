@@ -24,6 +24,7 @@
                 <option value="chaff1">Chauffeur 1</option>
                 <option value="chaff2">Chauffeur 2</option>
                 <option value="chaff3">Chauffeur 3</option>
+                <option value="factuur">Factuur</option>
             </select>
             <br><br>
             <input type="submit" id="submit" name="submit" value="submit" />
@@ -38,5 +39,9 @@
 if (isset($_POST['submit'])){
     if ($_POST['select'] === 'medewerker'){
         echo "<script>window.location = 'medewerkerLijst.php';</script>";
+    }
+
+    if ($_POST['select'] === 'factuur'){
+        echo "<script>window.location = 'factuur.php';</script>";
     }
 }
