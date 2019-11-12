@@ -105,7 +105,7 @@ $products = $stmt->fetch();
                     echo "<script type='text/javascript'>alert('$message');</script>";
                 //controleert de startdatum na vandaag is
                 }elseif($start < $now){
-                    $message = 'De startdatum na vandaag zijn ';
+                    $message = 'De startdatum moet na vandaag zijn ';
                     echo "<script type='text/javascript'>alert('$message');</script>";
 
                 }else {

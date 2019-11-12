@@ -67,7 +67,7 @@ if (isset($_POST["submitAantal"])) {
 
     if ($nieuwAantal <= 0) {
         echo '<script language="javascript">';
-        echo 'alert("Voer een ander aantal in")';
+        echo 'alert("Voer een juist aantal in")';
         echo '</script>';
     } else {
         //    Zet nieuwe aantal in array
