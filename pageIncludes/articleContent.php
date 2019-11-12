@@ -30,8 +30,11 @@ $products = $stmt->fetch();
 
         echo '<form method="post"><div class="reserveren">';
 
+        if ($products['onderhoud'] == 1){
+            echo '<p> Product zit in onderhoud. </p>';
+        }
         //als het een huurproduct is kan de klant een datum selecteren
-        if ($products['prijs'] === NULL) {
+        elseif ($products['prijs'] === NULL) {
             echo '<input class="startDate" type="date" name="startDate"> Begin Datum  &nbsp';
             echo '<input class="endDate" type="date" name="endDate"> Eind Datum<br>';
             echo '<input class="amount" type="number" name="amount"> Aantal<br>';

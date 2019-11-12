@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="288f7d4e-6808-4173-ae0f-8b9e732d0160" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/medewerkerLijst.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pageIncludes/articleContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/articleContent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageIncludes/shoppingcartContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/shoppingcartContent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageIncludes/lijstenContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/lijstenContent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageIncludes/loginContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/loginContent.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,43 +22,43 @@
     <session id="956679031">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="19" />
+          <entry key="project.closed" value="20" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.23" value="6" />
           <entry key="project.open.time.24" value="1" />
-          <entry key="project.open.time.25" value="2" />
+          <entry key="project.open.time.25" value="3" />
           <entry key="project.open.time.26" value="3" />
           <entry key="project.open.time.27" value="2" />
-          <entry key="project.open.time.28" value="1" />
+          <entry key="project.open.time.28" value="2" />
           <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.38" value="1" />
-          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.6" value="2" />
-          <entry key="project.opened" value="28" />
+          <entry key="project.opened" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="51" />
+          <entry key="css" value="53" />
           <entry key="html" value="1" />
-          <entry key="js" value="4" />
-          <entry key="php" value="368" />
+          <entry key="js" value="5" />
+          <entry key="php" value="408" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="51" />
+          <entry key="CSS" value="53" />
           <entry key="HTML" value="1" />
-          <entry key="JavaScript" value="4" />
-          <entry key="PHP" value="368" />
+          <entry key="JavaScript" value="5" />
+          <entry key="PHP" value="408" />
           <entry key="RNG Compact" value="1" />
         </counts>
       </usages-collector>
@@ -63,7 +66,7 @@
         <counts>
           <entry key="css" value="3045" />
           <entry key="js" value="55" />
-          <entry key="php" value="17025" />
+          <entry key="php" value="18034" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -71,7 +74,7 @@
           <entry key="CSS" value="3045" />
           <entry key="HTML" value="16" />
           <entry key="JavaScript" value="55" />
-          <entry key="PHP" value="17007" />
+          <entry key="PHP" value="18016" />
           <entry key="SQL" value="2" />
         </counts>
       </usages-collector>
@@ -79,32 +82,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pageIncludes/lijstenContent.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medewerkerLijst.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pageIncludes/shoppingcartContent.php">
+        <entry file="file://$PROJECT_DIR$/lijst/medewerkerLijst.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="154" column="13" selection-start-line="154" selection-start-column="13" selection-end-line="154" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pageIncludes/articleContent.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="170" column="60" lean-forward="true" selection-start-line="170" selection-start-column="60" selection-end-line="170" selection-end-column="60" />
-              <folding>
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pageIncludes/productsContent.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="65" column="79" selection-start-line="65" selection-start-column="79" selection-end-line="65" selection-end-column="79" />
+            <state relative-caret-position="493">
+              <caret line="29" column="40" lean-forward="true" selection-end-line="65" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -137,6 +137,7 @@
       <find>klantid</find>
       <find>var_dum</find>
       <find>category</find>
+      <find>fact</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -163,8 +164,6 @@
         <option value="$PROJECT_DIR$/css/lijsten.css" />
         <option value="$PROJECT_DIR$/css/chauffeur.css" />
         <option value="$PROJECT_DIR$/pageIncludes/chauffeurContent.php" />
-        <option value="$PROJECT_DIR$/css/bestellingenRetour.css" />
-        <option value="$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php" />
         <option value="$PROJECT_DIR$/css/products.css" />
         <option value="$PROJECT_DIR$/pageIncludes/customerHeader.php" />
         <option value="$PROJECT_DIR$/pictures/logout.php" />
@@ -173,7 +172,6 @@
         <option value="$PROJECT_DIR$/pageIncludes/articleJS.js" />
         <option value="$PROJECT_DIR$/pageIncludes/onderhoudCheck.php" />
         <option value="$PROJECT_DIR$/css/article.css" />
-        <option value="$PROJECT_DIR$/pageIncludes/lijstenContent.php" />
         <option value="$PROJECT_DIR$/shoppingcart.php" />
         <option value="$PROJECT_DIR$/productenPage.php" />
         <option value="$PROJECT_DIR$/medewerkerPagina.php" />
@@ -189,10 +187,18 @@
         <option value="$PROJECT_DIR$/articlePage.php" />
         <option value="$PROJECT_DIR$/pageIncludes/medewerkerPaginaContent.php" />
         <option value="$PROJECT_DIR$/pageIncludes/productsContent.php" />
-        <option value="$PROJECT_DIR$/pageIncludes/loginContent.php" />
         <option value="$PROJECT_DIR$/css/shoppingcart.css" />
-        <option value="$PROJECT_DIR$/pageIncludes/articleContent.php" />
         <option value="$PROJECT_DIR$/pageIncludes/shoppingcartContent.php" />
+        <option value="$PROJECT_DIR$/css/bestellingenRetour.css" />
+        <option value="$PROJECT_DIR$/pageIncludes/loginContent.php" />
+        <option value="$PROJECT_DIR$/pageIncludes/csv.js" />
+        <option value="$PROJECT_DIR$/pageIncludes/articleContent.php" />
+        <option value="$USER_HOME$/AppData/Local/Temp/medewerkerLijst.php" />
+        <option value="$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php" />
+        <option value="$PROJECT_DIR$/../medewerkerLijst.php" />
+        <option value="$PROJECT_DIR$/medewerkerLijst.php" />
+        <option value="$PROJECT_DIR$/pageIncludes/lijstenContent.php" />
+        <option value="$PROJECT_DIR$/lijst/medewerkerLijst.php" />
       </list>
     </option>
   </component>
@@ -203,9 +209,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+    <option name="x" value="-8" />
+    <option name="width" value="1130" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -213,6 +219,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -228,25 +235,33 @@
             <path>
               <item name="projectFFF" type="b2602c69:ProjectViewProjectNode" />
               <item name="projectFFF" type="462c0819:PsiDirectoryNode" />
+              <item name="lijst" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projectFFF" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projectFFF" type="462c0819:PsiDirectoryNode" />
               <item name="pageIncludes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/code/werkplaats" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\projectFFF\lijst" />
       <recent name="D:\xampp\htdocs\projectFFF" />
       <recent name="D:\xampp\htdocs\projectFFF\css" />
       <recent name="D:\xampp\htdocs\projectFFF\pages" />
@@ -303,11 +318,14 @@
       <workItem from="1573373613517" duration="10678000" />
       <workItem from="1573457723411" duration="569000" />
       <workItem from="1573463273352" duration="6784000" />
+      <workItem from="1573472981183" duration="4063000" />
+      <workItem from="1573479128319" duration="6591000" />
+      <workItem from="1573545072927" duration="1719000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137322000" />
+    <option name="totallyTimeSpent" value="149695000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -368,33 +386,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../NoMercy/DBconfig.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../NoMercy/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../NoMercy/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/adminHeader.php" />
-    <entry file="file://$PROJECT_DIR$/pageIncludes/customerHeader.php" />
-    <entry file="file://$PROJECT_DIR$/pictures/logout.php" />
-    <entry file="file://$PROJECT_DIR$/../NoMercy/css/registereren.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="24" selection-start-line="24" selection-end-line="69" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/articleJS.js" />
     <entry file="file://$PROJECT_DIR$/../NoMercy/pages/afgerond.php">
       <provider selected="true" editor-type-id="text-editor" />
@@ -451,13 +442,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medewerkerPagina.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
@@ -524,13 +508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/contactContent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="30" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/indexContent.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -538,31 +515,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/lijstenContent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="29" column="74" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bestellingenRetour.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/articlePage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -594,34 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../NoMercy/pages/lijsten.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="45" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../NoMercy/pages/lijstenGenereren.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/loginContent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="80" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../NoMercy/pages/registreren.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -636,13 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/medewerkerPaginaContent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/shoppingcart.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -650,27 +571,133 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/articleContent.php">
+    <entry file="file://$PROJECT_DIR$/css/bestellingenRetour.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/lijsten.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="170" column="60" lean-forward="true" selection-start-line="170" selection-start-column="60" selection-end-line="170" selection-end-column="60" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-          </folding>
+        <state>
+          <caret selection-end-line="27" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/contactContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="30" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="15" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/csv.js" />
+    <entry file="file://$PROJECT_DIR$/pageIncludes/medewerkerPaginaContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../NoMercy/pages/lijsten.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="55" selection-start-line="55" selection-end-line="57" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../NoMercy/pages/lijstenGenereren.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="55" selection-start-line="55" selection-end-line="55" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/productsContent.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state relative-caret-position="833">
           <caret line="65" column="79" selection-start-line="65" selection-start-column="79" selection-end-line="65" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/medewerkerLijst.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="29" lean-forward="true" selection-end-line="70" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../medewerkerLijst.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-476">
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medewerkerPagina.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medewerkerLijst.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/shoppingcartContent.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="154" column="13" selection-start-line="154" selection-start-column="13" selection-end-line="154" selection-end-column="13" />
+        <state relative-caret-position="221">
+          <caret line="13" selection-start-line="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/articlePage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/articleContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="166" selection-start-line="166" selection-end-line="167" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/loginContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/lijstenContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lijst/medewerkerLijst.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="40" lean-forward="true" selection-end-line="65" selection-end-column="9" />
         </state>
       </provider>
     </entry>

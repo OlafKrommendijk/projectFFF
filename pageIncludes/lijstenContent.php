@@ -26,13 +26,17 @@
                 <option value="chaff3">Chauffeur 3</option>
             </select>
             <br><br>
-            <input type="hidden" name="submit" value="true" />
-            <input type="submit" id="submit" value="Download gekozen lijst" />
+            <input type="submit" id="submit" name="submit" value="submit" />
         </form>
     </div>
-
-
-
 </div>
 </body>
 </html>
+
+<?php
+
+if (isset($_POST['submit'])){
+    if ($_POST['select'] === 'medewerker'){
+        echo "<script>window.location = 'medewerkerLijst.php';</script>";
+    }
+}

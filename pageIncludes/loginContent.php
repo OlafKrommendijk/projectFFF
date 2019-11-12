@@ -21,6 +21,8 @@
 
 <?php
 //checked over op de submit knop is gedrukt.
+$error = " ";
+
 if (isset($_POST["submit"])) {
     $email = htmlspecialchars($_POST["email"]);
     $password = htmlspecialchars($_POST["password"]);
