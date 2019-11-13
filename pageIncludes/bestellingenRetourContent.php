@@ -54,7 +54,9 @@ if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1 ){
     $dateNow = date('Y-m-d');
 
     //query die alle orders van vandaag ophaalt
-    $query = "SELECT * FROM orders INNER JOIN orderregel ON orderRegel_orderID = ordersID INNER JOIN klant ON orders_klantID = klantID INNER JOIN address ON orders_addressID = addressID WHERE retourDatum = '$dateNow' AND bezorgen = 1 OR bestelDatum = '$dateNow' AND bezorgen = 1 GROUP BY postcode ASC;";
+    $query = "SELECT * FROM orders INNER JOIN orderregel ON orderregel.orderRegel_orderID = orders.ordersID INNER JOIN klant ON orders.orders_klantID = klant.klantID 
+              INNER JOIN address ON orders.orders_addressID = address.addressID WHERE retourDatum = '$dateNow' AND bezorgen = 1 OR bestelDatum = '$dateNow' 
+              AND bezorgen = 1 GROUP BY ordersID ORDER BY postcode ASC;";
     $stmt = $db->prepare($query);
     $stmt->execute(array());
     $check = $stmt->fetchAll(PDO::FETCH_ASSOC);

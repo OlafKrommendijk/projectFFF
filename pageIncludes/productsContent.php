@@ -15,8 +15,8 @@
         <form method="POST">
             <!--selecteren van de categorien-->
             <select class="catSelect" name="categorie" onchange="this.form.submit()">
-                <option>------------</option>
-                <option value="allArticles">alle artikelen</option>
+                <option><?php if(isset($_POST['categorie'])){echo $_POST['categorie'];}else{echo ' ';}?></option>
+                <option value="Alle Producten">Alle Producten</option>
                 <?php
                 //haalt uit de database de categorieen waaruit gekozen kan worden
                 $categorie = "SELECT * FROM categorie;";
@@ -75,6 +75,10 @@
                 echo '<div class="productAfbeelding"><img src="' . $afbeelding .  '" alt="Productafbeelding"></div>';
                 echo '<br>';
                 echo $product['naam'];
+                echo '<br>';
+                echo '<br>';
+                if ($product['artikel_categorieID'] == 1){ echo "Koopproduct";}else{echo 'Huurproduct';};
+                echo '<br>';
                 echo '<br>';
 
                 if ($product['prijs'] === NULL){
