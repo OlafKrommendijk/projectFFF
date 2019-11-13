@@ -3,8 +3,8 @@
 $dateNow = date('Y-m-d');
 
 //query die alle orders van vandaag ophaalt
-$query = "SELECT * FROM orders INNER JOIN orderregel ON orderRegel_orderID = ordersID INNER JOIN klant ON orders_klantID = klantID 
-          INNER JOIN address on orders_addressID WHERE retourDatum = '$dateNow' AND bezorgen = 1 OR bestelDatum = '$dateNow' 
+$query = "SELECT * FROM orders INNER JOIN orderregel ON orderregel.orderRegel_orderID = orders.ordersID INNER JOIN klant ON orders.orders_klantID = klant.klantID 
+          INNER JOIN address ON orders.orders_addressID = address.addressID WHERE retourDatum = '$dateNow' AND bezorgen = 1 OR bestelDatum = '$dateNow' 
           AND bezorgen = 1 GROUP BY ordersID ORDER BY postcode ASC;";
 
 //prepared de query en voert hem uit
@@ -16,13 +16,13 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $result = array_chunk($result, ceil(count($result) / 3));
 
 //Geeft elke chauffeur de waarde die bij hem hoort
-if ($_GET["id"] === 1){
+if ($_GET["id"] === 0){
     $result = $result[0];
     $chaufNumber = "Chauffeur1";
-}elseif ($_GET["id"] === 2){
+}elseif ($_GET["id"] === 1){
     $result = $result[1];
     $chaufNumber = "Chauffeur2";
-}elseif ($_GET["id"] === 3) {
+}elseif ($_GET["id"] === 2) {
     $result = $result[2];
     $chaufNumber = "Chauffeur3";
 }
@@ -55,29 +55,29 @@ if ($_GET["id"] === 1){
     <?php
 
     //De waarden worden in een table gezet
-    foreach($result as $key => $value) { foreach ($value as $id => $order){ ?>
+    foreach($result[''.$_GET["id"].''] as $key => $order) { ?>
         <tbody>
         <tr>
-            <td><?php echo ucfirst($order['woonplaats']) . ' ' . $order['straat'] . ' ' . $order['huisnummer'] ?></td>
-            <td><?php echo strtoupper($order['naam']) .  ' '  . ucfirst($order['achternaam']) ?></td>
+            <td><?php echo $order['woonplaats'] . ' ' . $order['straat'] . ' ' . $order['huisnummer'] ?></td>
+            <td><?php echo $order['naam'] .  ' '  . $order['achternaam'] ?></td>
             <td> <?php echo $order['totaalprijs'] ?></td>
             <td><?php echo $order['ordersID'] ?></td>
             <td> <?php echo $order['postcode'] ?></td>
 
-            <?php if ($order["bestelDatum"] == $dateNow){?>
-            <td>Bestelling</td>
+            <?php if ($order["retourDatum"] == $dateNow){?>
+                <td>Retour</td>
             <?php }else{?>
-            <td>Retour</td>
+                <td>Bestelling</td>
             <?php } ?>
         </tr>
         </tbody>
-    <?php }} ?>
+    <?php } ?>
 </table>
 <script>
     //Als de pagina laad, voert de functie zichzelf uit. Hierna wordt je doorgestuurd na de pagina voor de lijsten
     window.onload = function () {
         tableToExcel('testTable', 'W3C Example Table', '<?php echo $dateNow ?>chauffeur.xls');
-        location.href = "./lijsten.php"
+        // location.href = "./lijsten.php"
     };
 
     //Via deze functie downloaden wij het excel bestand

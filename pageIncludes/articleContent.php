@@ -41,7 +41,7 @@ $products = $stmt->fetch();
             echo '<input class="amount" type="number" name="amount"> Aantal<br>';
             echo '<input type="submit" name="submit" id="submit" value="Reserveer!">';
         }else {
-            echo '<input class="startDate" type="date" name="startDate"> Ophaaldatum<br>';
+            echo '<input class="startDate" type="date" name="startDate"> Ophaal/bezorgdatum<br>';
             echo '<input class="amount" type="number" name="amount"> Aantal<br>';
             echo '<input type="submit" name="submit" id="submit" value="Koop!">';
         }
