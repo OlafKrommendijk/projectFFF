@@ -77,7 +77,7 @@ if ($_GET["id"] === 0){
     //Als de pagina laad, voert de functie zichzelf uit. Hierna wordt je doorgestuurd na de pagina voor de lijsten
     window.onload = function () {
         tableToExcel('testTable', 'W3C Example Table', '<?php echo $dateNow ?>chauffeur.xls');
-        // location.href = "./lijsten.php"
+        location.href = "./lijsten.php"
     };
 
     //Via deze functie downloaden wij het excel bestand

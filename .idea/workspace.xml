@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="288f7d4e-6808-4173-ae0f-8b9e732d0160" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lijst/chauffeur.php" beforeDir="false" afterPath="$PROJECT_DIR$/lijst/chauffeur.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageIncludes/productsContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/pageIncludes/productsContent.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,14 +19,15 @@
     <session id="956679031">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="29" />
+          <entry key="project.closed" value="31" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.23" value="6" />
-          <entry key="project.open.time.24" value="1" />
+          <entry key="project.open.time.24" value="2" />
           <entry key="project.open.time.25" value="3" />
           <entry key="project.open.time.26" value="4" />
           <entry key="project.open.time.27" value="3" />
@@ -39,8 +40,8 @@
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.51" value="1" />
-          <entry key="project.open.time.6" value="3" />
-          <entry key="project.opened" value="39" />
+          <entry key="project.open.time.6" value="4" />
+          <entry key="project.opened" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -48,7 +49,7 @@
           <entry key="css" value="59" />
           <entry key="html" value="1" />
           <entry key="js" value="5" />
-          <entry key="php" value="573" />
+          <entry key="php" value="585" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
@@ -57,7 +58,7 @@
           <entry key="CSS" value="59" />
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="5" />
-          <entry key="PHP" value="573" />
+          <entry key="PHP" value="585" />
           <entry key="RNG Compact" value="1" />
         </counts>
       </usages-collector>
@@ -65,7 +66,7 @@
         <counts>
           <entry key="css" value="3437" />
           <entry key="js" value="55" />
-          <entry key="php" value="28396" />
+          <entry key="php" value="28660" />
           <entry key="txt" value="52" />
         </counts>
       </usages-collector>
@@ -74,9 +75,9 @@
           <entry key="CSS" value="3437" />
           <entry key="HTML" value="46" />
           <entry key="JavaScript" value="55" />
-          <entry key="PHP" value="28322" />
+          <entry key="PHP" value="28560" />
           <entry key="PLAIN_TEXT" value="52" />
-          <entry key="SQL" value="28" />
+          <entry key="SQL" value="54" />
         </counts>
       </usages-collector>
     </session>
@@ -84,10 +85,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pageIncludes/productsContent.php">
+        <entry file="file://$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
+            <state relative-caret-position="264">
+              <caret line="54" column="73" selection-start-line="54" selection-start-column="73" selection-end-line="54" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -192,11 +193,11 @@
         <option value="$PROJECT_DIR$/medewerkerLijst.php" />
         <option value="$PROJECT_DIR$/medewerkerPagina.php" />
         <option value="$PROJECT_DIR$/pageIncludes/shoppingcartContent.php" />
-        <option value="$PROJECT_DIR$/lijst/chauffeur.php" />
         <option value="$PROJECT_DIR$/pageIncludes/lijstenContent.php" />
         <option value="$PROJECT_DIR$/pageIncludes/articleContent.php" />
-        <option value="$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php" />
         <option value="$PROJECT_DIR$/pageIncludes/productsContent.php" />
+        <option value="$PROJECT_DIR$/lijst/chauffeur.php" />
+        <option value="$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php" />
       </list>
     </option>
   </component>
@@ -217,7 +218,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -244,11 +244,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$USER_HOME$/code/werkplaats" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -327,6 +328,9 @@
       <workItem from="1573647444156" duration="54000" />
       <workItem from="1573647523991" duration="304000" />
       <workItem from="1573647891385" duration="183000" />
+      <workItem from="1573650562173" duration="311000" />
+      <workItem from="1574324767812" duration="76000" />
+      <workItem from="1575016426951" duration="1984000" />
     </task>
     <task id="LOCAL-00001" summary="Medeweker lijst kan nu bekeken en gedownload worden">
       <created>1573546863440</created>
@@ -339,14 +343,14 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193206000" />
+    <option name="totallyTimeSpent" value="195577000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.12890625" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.17773438" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
@@ -489,13 +493,6 @@
     <entry file="file://$USER_HOME$/AppData/Local/Temp/chauffeur1Lijst-1.php" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/chauffeur1Lijst-2.php" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/factuur.php" />
-    <entry file="file://$PROJECT_DIR$/lijst/medewerker.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="49" column="55" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/chauffeurContent.php" />
     <entry file="file://$PROJECT_DIR$/pageIncludes/contactContent.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -609,20 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medewerkerLijst.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medewerkerPagina.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shoppingcart.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -630,45 +613,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chauffeurLijst.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/medewerkerPaginaContent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/articleContent.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="43" column="86" selection-start-line="43" selection-start-column="86" selection-end-line="43" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chauffeurPage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lijst/chauffeur.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="7" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" column="14" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -700,10 +648,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lijst/chauffeur.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="79" selection-start-line="79" selection-end-line="79" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lijst/medewerker.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="49" column="55" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chauffeurLijst.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chauffeurPage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pageIncludes/productsContent.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state relative-caret-position="1248">
           <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medewerkerPagina.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medewerkerLijst.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/medewerkerPaginaContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="991">
+          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageIncludes/bestellingenRetourContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="54" column="73" selection-start-line="54" selection-start-column="73" selection-end-line="54" selection-end-column="73" />
         </state>
       </provider>
     </entry>

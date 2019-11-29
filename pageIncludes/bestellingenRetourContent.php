@@ -27,7 +27,12 @@ if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1 ){
     $dateNow = date('Y-m-d');
 
     //query die alle orders van vandaag ophaalt
-    $query = "SELECT * FROM orders INNER JOIN orderregel ON orderRegel_orderID = ordersID INNER JOIN klant ON orders_klantID = klantID  WHERE retourDatum = '$dateNow' AND bezorgen = 0 OR bestelDatum = '$dateNow' AND bezorgen = 0 GROUP BY ordersID;";
+    $query = "SELECT * FROM orders 
+              INNER JOIN orderregel ON orderRegel_orderID = ordersID 
+              INNER JOIN klant ON orders_klantID = klantID  
+              WHERE retourDatum = '$dateNow' AND bezorgen = 0
+              OR bestelDatum = '$dateNow' AND bezorgen = 0 
+              GROUP BY ordersID;";
 
     //prepared de query en voert hem uit
     $stmt = $db->prepare($query);
@@ -40,9 +45,16 @@ if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1 ){
         echo "Factuurnummer: " . $order['ordersID'] . "     Voornaam: " . $order['naam'] . "    Achternaam: " . $order['achternaam'];
         echo '<div class="betaald"><form class="orderForm" method="POST" enctype="multipart/form-data">';
         if ($order["betaald"] == 0) {
-            echo 'Betaald <input type="checkbox" name="unchecked" value="unchecked" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order['ordersID'].'">';}
+            echo 'Betaald <input type="checkbox" name="unchecked" value="unchecked" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order['ordersID'].'">';
+       }
         else {
             echo 'Betaald <input type="checkbox" checked name="checked" value="checked" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order["ordersID"].'"><input type="hidden" name="test" value="checked">';
+        }
+
+        if($order["afgeleverd"] == 0){
+            echo 'Opgehaald <input type="checkbox" name="uncheckedBezorgd" value="uncheckedBezorgd" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order['ordersID'].'">';
+        }else{
+            echo 'Opgehaald <input type="checkbox" checked name="checked" value="checked" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order["ordersID"].'"><input type="hidden" name="test" value="checked">';
         }
         echo '</form></div>';
         echo '</div>';
@@ -54,9 +66,13 @@ if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1 ){
     $dateNow = date('Y-m-d');
 
     //query die alle orders van vandaag ophaalt
-    $query = "SELECT * FROM orders INNER JOIN orderregel ON orderregel.orderRegel_orderID = orders.ordersID INNER JOIN klant ON orders.orders_klantID = klant.klantID 
-              INNER JOIN address ON orders.orders_addressID = address.addressID WHERE retourDatum = '$dateNow' AND bezorgen = 1 OR bestelDatum = '$dateNow' 
-              AND bezorgen = 1 GROUP BY ordersID ORDER BY postcode ASC;";
+    $query = "SELECT * FROM orders 
+              INNER JOIN orderregel ON orderregel.orderRegel_orderID = orders.ordersID 
+              INNER JOIN klant ON orders.orders_klantID = klant.klantID 
+              INNER JOIN address ON orders.orders_addressID = address.addressID 
+              WHERE retourDatum = '$dateNow' AND bezorgen = 1
+              OR bestelDatum = '$dateNow' AND bezorgen = 1 
+              GROUP BY ordersID ORDER BY postcode ASC;";
     $stmt = $db->prepare($query);
     $stmt->execute(array());
     $check = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -78,9 +94,16 @@ if (isset($_SESSION["admin"]) && $_SESSION["STATUS"] === 1 ){
         echo "Factuurnummer: " . $order['ordersID'] . "     Voornaam: " . $order['naam'] . "    Achternaam: " . $order['achternaam'];
         echo '<div class="betaald"><form class="orderForm" method="POST" enctype="multipart/form-data">';
         if ($order["betaald"] == 0) {
-            echo 'Betaald <input type="checkbox" name="unchecked" value="unchecked" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order['ordersID'].'">';}
+            echo 'Betaald <input type="checkbox" name="unchecked" value="unchecked" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order['ordersID'].'">';
+        }
         else {
             echo 'Betaald <input type="checkbox" checked name="checked" value="checked" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order["ordersID"].'"><input type="hidden" name="test" value="checked">';
+        }
+
+        if($order["afgeleverd"] == 0){
+            echo 'Afgeleverd <input type="checkbox" name="uncheckedBezorgd" value="uncheckedBezorgd" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order['ordersID'].'">';
+        }else{
+            echo 'Afgeleverd <input type="checkbox" checked name="checked" value="checked" onchange="this.form.submit()"><input type="hidden" name="id" value="'.$order["ordersID"].'"><input type="hidden" name="test" value="checked">';
         }
         echo '</form></div>';
         echo '</div>';
@@ -96,6 +119,16 @@ if (isset($_POST['unchecked'])){
     $orderID = $_POST['id'];
 
     $query = "UPDATE orders SET betaald = '1' WHERE ordersID = '$orderID'";
+    $stmt = $db->prepare($query);
+    $stmt->execute(array());
+
+    header('Refresh:0');
+    exit;
+}
+if (isset($_POST['uncheckedBezorgd'])){
+    $orderID = $_POST['id'];
+
+    $query = "UPDATE orders SET afgeleverd = '1' WHERE ordersID = '$orderID'";
     $stmt = $db->prepare($query);
     $stmt->execute(array());
 
